@@ -18,6 +18,15 @@
   <url><loc>https://glimify.app/features/lifecycle-messaging.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://glimify.app/features/entitlements-feature-flags.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://glimify.app/features/developer-api-webhooks.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/mrr-ticker.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/live-tape.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/valuation-tracker.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/plan-portfolio.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/signals-alerts.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/crypto-checkout.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/pricing-backtest.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/competitor-watchlist.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/founder-indices.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://glimify.app/privacy.html</loc><changefreq>weekly</changefreq><priority>0.2</priority></url>
   <url><loc>https://glimify.app/terms.html</loc><changefreq>weekly</changefreq><priority>0.2</priority></url>
 </urlset>
