@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Glimify app</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0b0c0e">
+  <link rel="icon" type="image/svg+xml" href="assets/img/glimify-icon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <script>try{var t=localStorage.getItem("glimify-app-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<div class="auth-wrap" id="view-loading"><p class="muted">Connecting…</p></div>
+
+<!-- Sign in / sign up -->
+<div class="auth-wrap" id="view-auth" hidden>
+  <div class="auth-card">
+    <div class="auth-brand"><img src="assets/img/glimify-icon.svg" alt="" width="28" height="28"><span>Glimify</span></div>
+    <div class="seg" role="tablist" aria-label="Sign in or create an account">
+      <button type="button" role="tab" data-mode="login" class="on">Log in</button>
+      <button type="button" role="tab" data-mode="signup">Create account</button>
+    </div>
+    <h1 id="auth-title">Log in</h1>
+    <p class="muted" id="auth-sub">Welcome back. Your products and revenue data are private to your account.</p>
+    <button class="btn btn-block btn-google" id="btn-google" type="button">
+      <svg viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.6 9.2c0-.6-.1-1.2-.2-1.8H9v3.4h4.8a4.1 4.1 0 0 1-1.8 2.7v2.2h2.9c1.7-1.6 2.7-3.9 2.7-6.5z"/><path fill="#34A853" d="M9 18c2.4 0 4.5-.8 6-2.2l-2.9-2.2c-.8.5-1.8.9-3.1.9-2.4 0-4.4-1.6-5.1-3.8H.9v2.3A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.9 10.7a5.4 5.4 0 0 1 0-3.4V5H.9a9 9 0 0 0 0 8z"/><path fill="#EA4335" d="M9 3.6c1.3 0 2.5.5 3.5 1.4l2.6-2.6A9 9 0 0 0 .9 5l3 2.3C4.6 5.2 6.6 3.6 9 3.6z"/></svg>
+      Continue with Google</button>
+    <div class="auth-or"><span>or</span></div>
+    <form id="form-auth" class="auth-form" novalidate>
+      <label>Email<input type="email" id="in-email" autocomplete="email" required maxlength="254"></label>
+      <label>Password<input type="password" id="in-pass" autocomplete="current-password" required minlength="8" maxlength="72"></label>
+      <button class="btn btn-primary btn-block" type="submit" id="btn-auth-submit">Log in</button>
+    </form>
+    <button class="linkish" type="button" id="btn-forgot">Forgot password?</button>
+    <p class="err" id="auth-err" role="alert"></p>
+    <p class="ok-msg" id="auth-ok" role="status"></p>
+    <a class="auth-back" href="index.html">← Back to site</a>
+  </div>
+</div>
+
+<!-- Set a new password (after reset link) -->
+<div class="auth-wrap" id="view-reset" hidden>
+  <div class="auth-card">
+    <div class="auth-brand"><img src="assets/img/glimify-icon.svg" alt="" width="28" height="28"><span>Glimify</span></div>
+    <h1>Set a new password</h1>
+    <form id="form-reset" class="auth-form" novalidate>
+      <label>New password<input type="password" id="in-newpass" autocomplete="new-password" required minlength="8" maxlength="72"></label>
+      <button class="btn btn-primary btn-block" type="submit">Save password</button>
+    </form>
+    <p class="err" id="reset-err" role="alert"></p>
+  </div>
+</div>
+
+<!-- Onboarding: first product -->
+<div class="auth-wrap" id="view-onboard" hidden>
+  <div class="auth-card wide">
+    <div class="auth-brand"><img src="assets/img/glimify-icon.svg" alt="" width="28" height="28"><span>Glimify</span></div>
+    <p class="step-k">Step 1 of 1</p>
+    <h1>Add your SaaS product</h1>
+    <p class="muted">This is the product you sell. You'll add its plans and subscribers next — you can change all of this later.</p>
+    <form id="form-onboard" class="auth-form" novalidate>
+      <label>Product name<input id="ob-name" required maxlength="80" placeholder="e.g. MarketScope"></label>
+      <label><span class="lbl-t">Website <span class="opt">optional</span></span><input id="ob-url" type="url" maxlength="300" placeholder="https://"></label>
+      <label>Currency<select id="ob-cur"></select></label>
+      <button class="btn btn-primary btn-block" type="submit">Create product</button>
+    </form>
+    <p class="err" id="ob-err" role="alert"></p>
+    <button class="linkish" type="button" id="btn-ob-logout">Log out</button>
+  </div>
+</div>
+
+<!-- App shell -->
+<div class="app" id="view-app" hidden>
+  <aside class="sb" id="sidebar" aria-label="App navigation">
+    <div class="sb-brand">
+      <img src="assets/img/glimify-icon.svg" alt="" width="24" height="24">
+      <span>Glimify</span>
+      <span class="sb-src">Beta</span>
+    </div>
+    <label class="prod-switch"><span class="sr">Product</span><select id="prod-select"></select></label>
+    <nav class="sb-nav" id="sb-nav"></nav>
+    <div class="sb-foot"><a href="index.html">← Glimify site</a></div>
+  </aside>
+  <div class="sb-overlay" id="sb-overlay"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="btn-menu" aria-label="Open navigation"><svg viewBox="0 0 20 20"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
+      <div class="tb-range" id="range" role="group" aria-label="Date range">
+        <button data-r="7">7D</button><button data-r="30" class="on">30D</button><button data-r="90">90D</button><button data-r="365">1Y</button>
+      </div>
+      <div class="tb-right">
+        <span class="live-pill" id="live-ind" title="Live updates"><span class="dot"></span><span id="live-text">Live</span></span>
+        <button class="icon-btn" id="btn-sound" aria-label="Mute sounds" title="Sounds on"></button>
+        <button class="icon-btn" id="btn-theme" aria-label="Toggle light / dark" title="Light / dark"><svg viewBox="0 0 20 20"><path d="M15.5 12.5A6.5 6.5 0 0 1 7.5 4.5a6.5 6.5 0 1 0 8 8z"/></svg></button>
+        <div class="acct">
+          <button class="acct-btn" id="btn-acct" aria-haspopup="true" aria-expanded="false"><span class="avatar" id="avatar">G</span></button>
+          <div class="acct-menu" id="acct-menu" hidden>
+            <div class="acct-email" id="acct-email"></div>
+            <a href="#settings">Settings</a>
+            <button id="btn-logout">Log out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="tape" id="tape" hidden aria-label="Latest subscription events"><div class="tape-track" id="tape-track"></div></div>
+    <main class="content" id="content" tabindex="-1"></main>
+    <p class="err content-err" id="app-err" role="alert"></p>
+  </div>
+</div>
+
+<div class="modal-back" id="modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-h"><h2 id="modal-title"></h2><button class="icon-btn" id="modal-x" aria-label="Close"><svg viewBox="0 0 20 20"><path d="M5 5l10 10M15 5 5 15"/></svg></button></div>
+    <form id="modal-form" class="auth-form" novalidate></form>
+    <p class="err" id="modal-err" role="alert"></p>
+  </div>
+</div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<div class="tip" id="tip" hidden></div>
+
+<script src="assets/js/config.js"></script>
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
