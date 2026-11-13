@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640" role="img" aria-label="Glimify icon">
+  <title>Glimify icon</title>
+  <desc>A rounded computer monitor with a heartbeat pulse on the screen. Original mark for Glimify, a live SaaS analytics product.</desc>
+  <defs>
+    <clipPath id="screen-clip-icon">
+      <rect x="55" y="79.5" width="530" height="408" rx="45" ry="45"/>
+    </clipPath>
+    <filter id="pulse-glow-icon" x="0" y="0" width="640" height="640" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="tight"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6.5" result="wide"/>
+      <feColorMatrix in="tight" result="g1" type="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+      <feColorMatrix in="wide" result="g2" type="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.45 0"/>
+      <feMerge>
+        <feMergeNode in="g2"/>
+        <feMergeNode in="g1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <path fill="#000000" d="M 100 79.5 H 540 A 45 45 0 0 1 585 124.5 V 442.5 A 45 45 0 0 1 540 487.5 H 377 L 385 522.5 A 12 12 0 0 1 397 534.5 H 425 A 13 13 0 1 1 425 560.5 H 215 A 13 13 0 1 1 215 534.5 H 243 A 12 12 0 0 1 255 522.5 L 263 487.5 H 100 A 45 45 0 0 1 55 442.5 V 124.5 A 45 45 0 0 1 100 79.5 Z"/>
+  <g clip-path="url(#screen-clip-icon)">
+    <polyline fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" filter="url(#pulse-glow-icon)" points="117,310.5 207,310.5 227,259.5 267,362.5 320,204.5 373,362.5 413,259.5 433,310.5 523,310.5"/>
+  </g>
+</svg>
