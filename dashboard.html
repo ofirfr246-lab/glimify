@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Live dashboard — Glimify</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#060708">
+  <link rel="icon" type="image/svg+xml" href="assets/img/glimify-icon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body class="dash-body">
+<div class="atmos" aria-hidden="true"></div>
+
+<header class="nav scrolled">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html" aria-label="Glimify home">
+      <span class="brand-mark"><img src="assets/img/glimify-icon.svg" alt="" width="26" height="26"></span>
+      Glimify <span class="tag tag-pulse dash-tag">Live · MarketScope</span>
+    </a>
+    <div class="nav-cta">
+      <span class="dash-live" id="live-ind" hidden><span class="dot"></span><span id="live-text">LIVE</span></span>
+      <button class="btn btn-ghost btn-sm" id="btn-refresh" hidden>Refresh</button>
+      <button class="btn btn-ghost btn-sm" id="btn-logout" hidden>Log out</button>
+      <a class="btn btn-ghost btn-sm" href="index.html">← Site</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container dash-main">
+
+  <!-- Loading -->
+  <section class="dash-state" id="view-loading">
+    <p class="mono muted">Connecting…</p>
+  </section>
+
+  <!-- Login -->
+  <section class="dash-card dash-login" id="view-login" hidden>
+    <span class="eyebrow"><span class="tick"></span>Private</span>
+    <h1 class="h3">Sign in with your MarketScope account</h1>
+    <p class="muted">This dashboard shows real MarketScope data. Only approved admin accounts can see it.</p>
+    <button class="btn btn-primary dash-full" id="btn-google">Continue with Google</button>
+    <div class="dash-or"><span>or</span></div>
+    <form id="form-login" class="dash-form" novalidate>
+      <label>Email<input type="email" id="in-email" autocomplete="email" required></label>
+      <label>Password<input type="password" id="in-pass" autocomplete="current-password" required></label>
+      <button class="btn btn-ghost dash-full" type="submit">Log in</button>
+    </form>
+    <p class="dash-err" id="login-err" role="alert"></p>
+  </section>
+
+  <!-- No access -->
+  <section class="dash-card dash-login" id="view-denied" hidden>
+    <span class="eyebrow"><span class="tick"></span>No access</span>
+    <h1 class="h3">This account can’t open the dashboard</h1>
+    <p class="muted">You’re signed in as <b class="mono" id="denied-email"></b>, but it isn’t on the admin list.</p>
+    <button class="btn btn-ghost dash-full" id="btn-logout2">Log out</button>
+  </section>
+
+  <!-- Dashboard -->
+  <section id="view-dash" hidden>
+    <div class="dash-head">
+      <div>
+        <span class="eyebrow"><span class="tick"></span>MarketScope · real data</span>
+        <h1 class="dash-title">Live pulse</h1>
+      </div>
+      <p class="mono muted dash-updated">Updated <span id="updated">—</span> · refreshes every 60s</p>
+    </div>
+
+    <div class="dash-kpis" id="kpis"></div>
+
+    <div class="dash-card dash-chart-card">
+      <div class="dash-card-head">
+        <h2 class="h3">Daily activity · last 30 days</h2>
+        <div class="dash-seg" id="series-seg" role="tablist">
+          <button data-s="signups" class="on">Signups</button><button data-s="leads">Leads</button><button data-s="waitlist">Waitlist</button><button data-s="reports">Reports</button>
+        </div>
+      </div>
+      <div id="chart" class="dash-chart"></div>
+    </div>
+
+    <div class="dash-grid">
+      <div class="dash-card"><div class="dash-card-head"><h2 class="h3">Recent signups</h2></div><div id="t-signups"></div></div>
+      <div class="dash-card"><div class="dash-card-head"><h2 class="h3">Recent leads</h2></div><div id="t-leads"></div></div>
+      <div class="dash-card"><div class="dash-card-head"><h2 class="h3">Glimify waitlist</h2></div><div id="t-waitlist"></div></div>
+      <div class="dash-card"><div class="dash-card-head"><h2 class="h3">Product usage</h2></div><div id="t-usage"></div></div>
+    </div>
+    <p class="dash-err" id="dash-err" role="alert"></p>
+  </section>
+</main>
+
+<script src="assets/js/config.js"></script>
+<script type="module" src="assets/js/dashboard.js"></script>
+</body>
+</html>
