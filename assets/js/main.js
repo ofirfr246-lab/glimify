@@ -159,11 +159,10 @@
       var email = form.email.value.trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { showErr("Please enter a valid email address."); form.email.focus(); return; }
       var payload = {
-        email: email,
-        product_url: (form.product_url.value || "").trim() || null,
-        stage: form.stage.value || null,
-        source: "glimify-site",
-        created_at: new Date().toISOString()
+        email: email.toLowerCase(),
+        product_url: (form.product_url && form.product_url.value ? form.product_url.value.trim() : "") || null,
+        stage: (form.stage && form.stage.value) || null,
+        source: "glimify-site"
       };
       var done = function (title, body) {
         if (title) successTitle.textContent = title;
@@ -171,7 +170,7 @@
         wrap.classList.add("done");
       };
       if (!CFG.WAITLIST_ENDPOINT) {
-        // No backend yet: nothing is sent or stored anywhere.
+        // No backend configured: nothing is sent or stored anywhere.
         done("Thanks — the waitlist opens soon.",
              "We're still wiring up sign-ups, so your email wasn't saved yet. Check back in a few days — we'd love to have you.");
         return;
@@ -180,8 +179,15 @@
       var headers = Object.assign({ "Content-Type": "application/json" }, CFG.WAITLIST_HEADERS || {});
       fetch(CFG.WAITLIST_ENDPOINT, { method: "POST", headers: headers, body: JSON.stringify(payload) })
         .then(function (r) {
-          if (r.ok || r.status === 409) done("You're on the list.", "We'll email you when early access opens. No spam — just launch news.");
-          else throw new Error("HTTP " + r.status);
+          if (r.status === 409) {
+            done("You're already on the list.", "We'll email you when early access opens. No spam — just launch news.");
+            return;
+          }
+          if (r.ok) {
+            done("You're on the list.", "We'll email you when early access opens. No spam — just launch news.");
+            return;
+          }
+          throw new Error("HTTP " + r.status);
         })
         .catch(function () { showErr("Something went wrong. Please try again in a moment."); })
         .finally(function () { btn.disabled = false; btn.firstChild.textContent = "Join the waitlist "; });

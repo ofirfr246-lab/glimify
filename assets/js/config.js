@@ -7,12 +7,12 @@ window.GLIMIFY_CONFIG = {
   // Public site URL. Placeholder until the domain is bought.
   SITE_URL: "https://glimify.app",
 
-  // Waitlist endpoint. Leave '' until a backend exists.
-  // When set, the form POSTs JSON: { email, product_url, stage, source, created_at }.
-  // Example (Supabase REST, table with an insert-only RLS policy):
-  //   WAITLIST_ENDPOINT: "https://<project>.supabase.co/rest/v1/waitlist"
-  //   WAITLIST_HEADERS: { apikey: "<anon key>", Authorization: "Bearer <anon key>", Prefer: "return=minimal" }
-  // Only ever put a PUBLIC (anon / publishable) key here — never a secret key.
-  WAITLIST_ENDPOINT: "",
-  WAITLIST_HEADERS: {}
+  // Waitlist endpoint: Supabase REST, insert-only RLS on glimify_waitlist.
+  // Only a PUBLIC (publishable) key is stored here — never a secret key.
+  WAITLIST_ENDPOINT: "https://izcqyzrzjtogsfrffknp.supabase.co/rest/v1/glimify_waitlist",
+  WAITLIST_HEADERS: {
+    apikey: "sb_publishable_Q4JbiEEDoJzbcBJsmsq6rA_7I-_dkI2",
+    Authorization: "Bearer sb_publishable_Q4JbiEEDoJzbcBJsmsq6rA_7I-_dkI2",
+    Prefer: "return=minimal"
+  }
 };
