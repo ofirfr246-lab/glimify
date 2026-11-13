@@ -1,0 +1,64 @@
+/* Glimify private live dashboard */
+[hidden] { display: none !important; }
+.dash-body { min-height: 100vh; }
+.dash-tag { margin-left: 6px; }
+.dash-main { padding-top: 36px; padding-bottom: 80px; }
+.dash-state { padding: 120px 0; text-align: center; }
+.dash-card {
+  background: linear-gradient(180deg, var(--surface), var(--bg-2));
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 22px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+}
+.dash-login { max-width: 440px; margin: 64px auto; display: grid; gap: 14px; }
+.dash-login h1 { font-size: 26px; }
+.dash-login p { margin: 0; }
+.dash-full { width: 100%; }
+.dash-or { display: flex; align-items: center; gap: 12px; color: var(--faint); font-size: 12px; font-family: var(--mono); text-transform: uppercase; }
+.dash-or::before, .dash-or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.dash-form { display: grid; gap: 12px; }
+.dash-form label { display: grid; gap: 6px; font-size: 13px; color: var(--muted); }
+.dash-form input {
+  height: 44px; padding: 0 14px; border-radius: var(--radius-sm); border: 1px solid var(--line-2);
+  background: var(--bg); color: var(--text); outline: none;
+}
+.dash-form input:focus { border-color: rgba(92,245,176,.5); box-shadow: 0 0 0 3px var(--pulse-soft); }
+.dash-err { color: var(--rose); font-size: 14px; min-height: 1em; margin: 0; }
+.dash-err:empty { display: none; }
+
+.dash-live { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; color: var(--pulse); }
+.dash-live.stale { color: var(--amber); }
+.dash-live.stale .dot { background: var(--amber); animation: none; }
+
+.dash-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+.dash-title { font-size: clamp(36px, 5vw, 56px); margin-top: 8px; }
+.dash-updated { font-size: 12.5px; margin: 0; }
+
+.dash-kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 14px; }
+.kpi { padding: 18px 20px; }
+@media (max-width: 860px) { .dash-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .dash-kpis { grid-template-columns: 1fr; } .dash-tag { display: none; } }
+.kpi .k-label { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.kpi .k-val { font-size: 40px; font-weight: 500; letter-spacing: -0.04em; line-height: 1.1; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.kpi .k-sub { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+.kpi .up { color: var(--pulse); } .kpi .down { color: var(--rose); }
+
+.dash-card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.dash-card-head h2 { font-size: 17px; }
+.dash-chart-card { margin-bottom: 14px; }
+.dash-seg { display: inline-flex; border: 1px solid var(--line-2); border-radius: 999px; padding: 3px; }
+.dash-seg button { border: 0; background: none; padding: 5px 12px; border-radius: 999px; font-size: 13px; color: var(--muted); cursor: pointer; }
+.dash-seg button.on { background: var(--pulse-soft); color: var(--pulse); }
+.dash-chart svg { width: 100%; height: 220px; }
+.dash-chart .bar { fill: var(--pulse); opacity: .85; }
+.dash-chart .bar:hover { opacity: 1; }
+.dash-chart .grid { stroke: var(--line); }
+.dash-chart text { fill: var(--faint); font-family: var(--mono); font-size: 10px; }
+.dash-chart .empty-note { fill: var(--muted); font-size: 13px; }
+
+.dash-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 860px) { .dash-grid { grid-template-columns: 1fr; } }
+.dash-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.dash-table th { text-align: left; font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); font-weight: 400; padding: 0 8px 8px 0; }
+.dash-table td { padding: 9px 8px 9px 0; border-top: 1px solid var(--line); color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
+.dash-table td.mono { font-family: var(--mono); font-size: 12.5px; color: var(--text); }
+.dash-empty { color: var(--muted); font-size: 14px; padding: 18px 0; margin: 0; }
