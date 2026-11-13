@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Glimify — The all-in-one platform to sell and grow your SaaS</title>
+  <meta name="description" content="Glimify is an all-in-one platform for SaaS founders: hosted pricing pages and checkout, subscriptions and billing, a customer portal, and a real-time dashboard for visitors, checkout, MRR and revenue. Join the early-access waitlist.">
+  <meta name="theme-color" content="#060708">
+  <link rel="canonical" href="https://glimify.app/">
+  <link rel="icon" type="image/svg+xml" href="assets/img/glimify-icon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/glimify-icon-512.png">
+  <link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Glimify">
+  <meta property="og:title" content="Glimify — Sell your SaaS. Watch it grow, live.">
+  <meta property="og:description" content="Pricing pages, checkout, subscriptions, customer portal and a live revenue dashboard — in one platform built for SaaS founders. Early access opening soon.">
+  <meta property="og:url" content="https://glimify.app/">
+  <meta property="og:image" content="https://glimify.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Glimify — Sell your SaaS. Watch it grow, live.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Glimify — Sell your SaaS. Watch it grow, live.">
+  <meta name="twitter:description" content="The all-in-one platform to sell, bill and grow a SaaS — with a real-time dashboard. Early access opening soon.">
+  <meta name="twitter:image" content="https://glimify.app/og-image.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/features.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Glimify","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://glimify.app/","description":"All-in-one platform for SaaS founders: pricing pages, checkout, subscriptions, customer portal and real-time analytics. Pre-launch."}
+  </script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2 12h4l2-5 4 10 3-8 2 3h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-dollar" viewBox="0 0 24 24"><path d="M12 2v20M17 6.5C17 4.6 14.8 4 12 4S7 5 7 7.5 9.5 10.5 12 11s5 1.4 5 4-2.2 3.5-5 3.5S7 17.4 7 15.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0zM12 18v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M9 21V9" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="8" cy="8" r="1.5" fill="currentColor"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 10h19M6 15h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="19" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M3.5 17a9 9 0 1 1 17 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m12 14 4.5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="14" r="1.6" fill="currentColor"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9-9.3C2 7.4 4.2 4.5 7.4 4.5c2 0 3.6 1.1 4.6 2.7 1-1.6 2.6-2.7 4.6-2.7 3.2 0 5.4 2.9 4.4 6.2C19.5 15.4 12 20 12 20z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M5 15c-1.5 1.3-2 5-2 5s3.7-.5 5-2M9 15l-3-3c1-3.5 4.5-9 13-9 0 8.5-5.5 12-9 13z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="14.5" cy="9.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<div class="atmos" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top" aria-label="Glimify home">
+      <span class="brand-mark"><img src="assets/img/glimify-icon.svg" alt="" width="26" height="26"></span>
+      Glimify
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li class="has-mega"><a href="features.html" aria-haspopup="true">Features <svg class="chev"><use href="#i-chev"/></svg></a><div class="mega" role="menu"><div class="mega-inner"><div class="mega-col"><h6>Sell</h6><a href="features/pricing-page-builder.html"><svg><use href="#i-layout"/></svg><span>Pricing page builder + A/B tests</span></a><a href="features/checkout-trials.html"><svg><use href="#i-card"/></svg><span>Checkout &amp; trials</span></a><a href="features/affiliate-referrals.html"><svg><use href="#i-share"/></svg><span>Affiliates &amp; referrals</span></a></div><div class="mega-col"><h6>Bill</h6><a href="features/subscription-billing.html"><svg><use href="#i-repeat"/></svg><span>Subscription billing</span></a><a href="features/usage-metering.html"><svg><use href="#i-gauge"/></svg><span>Usage-based metering</span></a><a href="features/dunning-recovery.html"><svg><use href="#i-shield"/></svg><span>Dunning &amp; payment recovery</span></a><a href="features/customer-portal.html"><svg><use href="#i-user"/></svg><span>Customer portal</span></a><a href="features/tax-multi-currency.html"><svg><use href="#i-globe"/></svg><span>Global tax &amp; multi-currency</span></a></div><div class="mega-col"><h6>Grow</h6><a href="features/churn-prevention.html"><svg><use href="#i-heart"/></svg><span>Churn prediction &amp; cancel flow</span></a><a href="features/onboarding-activation.html"><svg><use href="#i-rocket"/></svg><span>Onboarding &amp; activation funnels</span></a><a href="features/lifecycle-messaging.html"><svg><use href="#i-mail"/></svg><span>Lifecycle emails &amp; in-app messages</span></a></div><div class="mega-col"><h6>Analyze</h6><a href="features/live-pulse.html"><svg><use href="#i-pulse"/></svg><span>Live pulse dashboard</span></a><a href="features/revenue-analytics.html"><svg><use href="#i-chart"/></svg><span>Revenue analytics</span></a><a href="features/ai-growth-advisor.html"><svg><use href="#i-sparkle"/></svg><span>AI growth advisor</span></a></div><div class="mega-col"><h6>Build</h6><a href="features/entitlements-feature-flags.html"><svg><use href="#i-flag"/></svg><span>Entitlements &amp; feature flags</span></a><a href="features/developer-api-webhooks.html"><svg><use href="#i-code"/></svg><span>Developer API &amp; webhooks</span></a></div><a class="mega-all" href="features.html">See all 16 features <svg><use href="#i-arrow"/></svg></a></div></div></li>
+        <li><a href="#platform">Platform</a></li><li><a href="#how">How it works</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="features.html">All features</a>
+      <a class="btn btn-primary btn-sm" href="#waitlist">Join the waitlist</a>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="features.html">Features</a>
+    <a href="#platform">Platform</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+    <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+  </div>
+</header>
+
+<main id="main">
+  <span id="top"></span>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container">
+      <div class="chip reveal"><span class="dot"></span><b>Pre-launch</b> Early access opening soon</div>
+      <h1 class="display reveal d1">Sell your SaaS.<br><span class="serif">Watch it grow, live.</span></h1>
+      <p class="lede reveal d2">Glimify is the all-in-one platform for SaaS founders — pricing pages, checkout, subscriptions and a customer portal, run from one real-time admin that shows every visitor, checkout and dollar of MRR as it happens.</p>
+      <div class="hero-ctas reveal d3">
+        <a class="btn btn-primary" href="#waitlist">Join the waitlist <svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#platform">Explore the platform</a>
+      </div>
+      <p class="hero-note reveal d3">Free during early access<span>·</span>No credit card<span>·</span>Built in public</p>
+
+      <!-- Dashboard preview -->
+      <div class="stage">
+        <div class="float f1" aria-hidden="true">
+          <div class="row"><span class="ok"><svg><use href="#i-check"/></svg></span><div><b>New subscription</b><small>Pro · monthly · example</small></div></div>
+        </div>
+        <div class="float f2" aria-hidden="true">
+          <div class="row"><span class="dot"></span><div><b><span data-live-mirror>42</span> people on pricing</b><small>right now · example</small></div></div>
+        </div>
+
+        <div class="window" role="img" aria-label="Product preview of the Glimify admin dashboard with example data: live visitors, revenue pulse chart, checkout funnel, MRR and recent events.">
+          <div class="window-inner">
+            <div class="window-bar">
+              <div class="lights"><i></i><i></i><i></i></div>
+              <div class="url"><svg><use href="#i-lock"/></svg>admin.glimify.app</div>
+              <span class="preview-flag">Product preview · Example data</span>
+            </div>
+            <div class="app">
+              <aside class="side" aria-hidden="true">
+                <div class="side-brand"><span class="ws">A</span><div>Acme Cloud<small>Example workspace</small></div></div>
+                <a class="on"><svg><use href="#i-home"/></svg>Home</a>
+                <a><svg><use href="#i-pulse"/></svg>Live <span class="live-pill"><span class="dot"></span><span data-live-mirror>42</span></span></a>
+                <a><svg><use href="#i-funnel"/></svg>Checkout</a>
+                <a><svg><use href="#i-repeat"/></svg>Subscriptions</a>
+                <a><svg><use href="#i-user"/></svg>Customers</a>
+                <a><svg><use href="#i-dollar"/></svg>Revenue</a>
+                <div class="grp">Sell</div>
+                <a><svg><use href="#i-layout"/></svg>Pricing page</a>
+                <a><svg><use href="#i-tag"/></svg>Discounts</a>
+                <a><svg><use href="#i-bell"/></svg>Alerts</a>
+                <div class="grp">Settings</div>
+                <a><svg><use href="#i-plug"/></svg>Integrations</a>
+                <a><svg><use href="#i-gear"/></svg>Settings</a>
+              </aside>
+              <div class="main" aria-hidden="true">
+                <div class="main-head">
+                  <div><h4>Good evening, founder</h4><p>Here's your business, live.</p></div>
+                  <div class="seg"><span class="on">Live</span><span>Today</span><span>7d</span><span>30d</span></div>
+                </div>
+
+                <div class="card k k-live">
+                  <div class="card-label"><span class="l"><span class="dot"></span>Live visitors</span><span class="tag tag-pulse">Live</span></div>
+                  <div class="metric" data-live>42</div>
+                  <div class="delta">↑ 12% vs last hour</div>
+                </div>
+                <div class="card k">
+                  <div class="card-label"><span>MRR</span></div>
+                  <div class="metric">$8,420</div>
+                  <div class="delta">↑ 6.4% this month</div>
+                  <svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none"><path d="M0 28 L15 26 L30 27 L45 21 L60 22 L75 16 L90 14 L105 9 L120 5" fill="none" stroke="#5cf5b0" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </div>
+                <div class="card k">
+                  <div class="card-label"><span>Visitors today</span></div>
+                  <div class="metric" data-today>1,284</div>
+                  <div class="delta">↑ 9% vs yesterday</div>
+                  <svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none"><path d="M0 22 L15 25 L30 18 L45 20 L60 13 L75 17 L90 11 L105 13 L120 8" fill="none" stroke="#8fb8ff" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </div>
+                <div class="card k">
+                  <div class="card-label"><span>Churn (30d)</span></div>
+                  <div class="metric">2.1<small>%</small></div>
+                  <div class="delta down">↓ 0.3 pts</div>
+                  <svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none"><path d="M0 10 L15 12 L30 11 L45 16 L60 15 L75 19 L90 18 L105 22 L120 24" fill="none" stroke="#7d838c" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </div>
+
+                <div class="card pulse-card">
+                  <div class="card-label">
+                    <span class="l">Traffic pulse · last 60 minutes</span>
+                    <span class="legend"><span><i style="background:#5cf5b0"></i>Visitors</span><span><i style="background:rgba(255,255,255,.25)"></i>Checkouts</span></span>
+                  </div>
+                  <div class="chart">
+                    <svg id="pulse-chart" viewBox="0 0 800 210" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id="pg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5cf5b0" stop-opacity=".28"/><stop offset="1" stop-color="#5cf5b0" stop-opacity="0"/></linearGradient>
+                        <linearGradient id="pl" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#5cf5b0" stop-opacity=".2"/><stop offset=".35" stop-color="#5cf5b0"/><stop offset="1" stop-color="#bfffe0"/></linearGradient>
+                      </defs>
+                      <g stroke="rgba(255,255,255,.05)" stroke-width="1">
+                        <line x1="0" x2="800" y1="52" y2="52"/><line x1="0" x2="800" y1="105" y2="105"/><line x1="0" x2="800" y1="157" y2="157"/>
+                      </g>
+                      <path d="M0 196 C60 194 80 190 120 188 S200 182 240 184 S320 176 360 172 S440 178 480 170 S560 166 600 160 S700 158 800 150" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="1.5" stroke-dasharray="3 4"/>
+                      <path class="area" fill="url(#pg)"/>
+                      <path class="line" fill="none" stroke="url(#pl)" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+                      <circle class="halo" r="10" fill="rgba(92,245,176,.18)"/>
+                      <circle class="head" r="4" fill="#5cf5b0"/>
+                    </svg>
+                  </div>
+                  <div class="chart-axis"><span>−60m</span><span>−45m</span><span>−30m</span><span>−15m</span><span>now</span></div>
+                </div>
+
+                <div class="card funnel-card">
+                  <div class="card-label"><span>Checkout funnel · today</span></div>
+                  <div class="funnel">
+                    <div class="f-row"><div class="f-top"><span>Viewed pricing</span><span><b>612</b><em>100%</em></span></div><div class="f-bar"><span data-w="100"></span></div></div>
+                    <div class="f-row"><div class="f-top"><span>Chose a plan</span><span><b>241</b><em>39%</em></span></div><div class="f-bar"><span data-w="39"></span></div></div>
+                    <div class="f-row"><div class="f-top"><span>Started checkout</span><span><b>118</b><em>19%</em></span></div><div class="f-bar"><span data-w="19"></span></div></div>
+                    <div class="f-row"><div class="f-top"><span>Paid</span><span><b>47</b><em>7.7%</em></span></div><div class="f-bar"><span data-w="7.7"></span></div></div>
+                  </div>
+                  <div class="f-foot"><span>Biggest drop-off</span><b>Plan → Checkout</b></div>
+                </div>
+
+                <div class="card subs-card">
+                  <div class="card-label"><span>Subscriptions</span><span class="tag">12 months</span></div>
+                  <div class="subs-grid">
+                    <div><span>Active</span><b>318</b></div>
+                    <div><span>Trials</span><b>37</b></div>
+                    <div><span>ARPA</span><b>$26.48</b></div>
+                  </div>
+                  <div class="bars" aria-hidden="true">
+                    <i style="height:28%;transition-delay:.05s"></i><i style="height:34%;transition-delay:.1s"></i><i style="height:31%;transition-delay:.15s"></i><i style="height:42%;transition-delay:.2s"></i><i style="height:47%;transition-delay:.25s"></i><i style="height:45%;transition-delay:.3s"></i><i style="height:56%;transition-delay:.35s"></i><i style="height:61%;transition-delay:.4s"></i><i style="height:66%;transition-delay:.45s"></i><i style="height:73%;transition-delay:.5s"></i><i style="height:84%;transition-delay:.55s"></i><i style="height:96%;transition-delay:.6s"></i>
+                  </div>
+                </div>
+
+                <div class="card feed-card">
+                  <div class="card-label"><span class="l"><span class="dot"></span>Live events</span></div>
+                  <ul class="feed">
+                    <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#5cf5b0" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="t">Trial converted<small>Pro · monthly · just now</small></span><span class="a">+$49</span></li>
+                    <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#b5bac1" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="t">Checkout opened<small>Team · yearly · 2m ago</small></span><span class="a dim">live</span></li>
+                    <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#5cf5b0" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span><span class="t">Upgrade<small>Starter → Pro · 4m ago</small></span><span class="a">+$30</span></li>
+                    <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8fb8ff" stroke-width="2" stroke-linecap="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></span><span class="t">Trial started<small>Team · 14 days · 6m ago</small></span><span class="a dim">trial</span></li>
+                  </ul>
+                </div>
+
+                <div class="example-note">All figures are example data for a fictional company — Glimify is in development.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STACK ================= -->
+  <section class="stack">
+    <div class="container">
+      <div class="stack-row reveal">
+        <div><span class="n">01</span><b>Pricing page</b><small>Hosted, on your brand</small></div>
+        <div><span class="n">02</span><b>Checkout</b><small>Built to convert</small></div>
+        <div><span class="n">03</span><b>Billing</b><small>Plans, trials, invoices</small></div>
+        <div><span class="n">04</span><b>Customer portal</b><small>Self-serve accounts</small></div>
+        <div><span class="n">05</span><b>Revenue metrics</b><small>MRR, churn, LTV</small></div>
+        <div><span class="n">06</span><b>Live analytics</b><small>Visitors in real time</small></div>
+      </div>
+      <p class="stack-cap reveal">Six jobs most SaaS founders stitch together from separate tools. <span style="color:var(--text)">Glimify is being built to do all of them, in one place.</span></p>
+    </div>
+  </section>
+
+  <!-- ================= PLATFORM ================= -->
+  <section class="section" id="platform">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow"><span class="tick"></span>The platform<span class="tick"></span></span>
+        <h2 class="h2">One platform.<br><span class="serif">Every step of the sale.</span></h2>
+        <p class="lede">From the first visit to the hundredth renewal — Glimify is designed to be the commerce layer and the control room for your SaaS.</p>
+        <div class="pillar-tabs" role="navigation" aria-label="Platform sections">
+          <a href="#sell">Sell</a><a href="#bill">Bill</a><a href="#grow">Grow</a><a href="#analyze">Analyze</a>
+        </div>
+      </div>
+
+      <!-- Sell -->
+      <div class="pillar" id="sell">
+        <div class="pillar-copy reveal">
+          <span class="pillar-num">01 — Sell</span>
+          <h3>Launch pricing and checkout <span class="serif">in an afternoon.</span></h3>
+          <p>A hosted pricing page and checkout that look like your product, not like a payment form. Publish plans, switch on trials and start taking money — without building billing pages yourself.</p>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Hosted, on-brand pricing page on your own domain</li>
+            <li><svg><use href="#i-check"/></svg>Monthly and yearly plans, free trials, seats and add-ons</li>
+            <li><svg><use href="#i-check"/></svg>A fast, focused checkout — payments through your own Stripe account (planned)</li>
+          </ul>
+          <div class="pillar-meta"><span class="tag tag-pulse">In development</span></div>
+        </div>
+        <div class="visual reveal d1" aria-hidden="true">
+          <div class="pp">
+            <div class="pp-head"><b>Simple pricing for Acme Cloud</b><small>Start free. Upgrade when you grow.</small>
+              <div class="pp-toggle"><span>Monthly</span><span class="on">Yearly · 2 months free</span></div>
+            </div>
+            <div class="pp-grid">
+              <div class="plan"><div class="pn">Starter</div><div class="pr">$19<small>/mo</small></div><ul><li>3 projects</li><li>Email support</li><li>Basic reports</li></ul><div class="pb">Start trial</div></div>
+              <div class="plan hot"><div class="pn">Pro <span class="tag tag-pulse">Popular</span></div><div class="pr">$49<small>/mo</small></div><ul><li>Unlimited projects</li><li>Priority support</li><li>Advanced reports</li></ul><div class="pb">Start 14-day trial</div></div>
+            </div>
+            <div class="pp-trust"><span>Secure checkout</span><span>·</span><span>Cancel anytime</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bill -->
+      <div class="pillar flip" id="bill">
+        <div class="pillar-copy reveal">
+          <span class="pillar-num">02 — Bill</span>
+          <h3>Subscriptions that <span class="serif">run themselves.</span></h3>
+          <p>Upgrades, downgrades, renewals, invoices and failed cards — handled automatically, with a self-serve portal so customers can manage their plan without emailing you.</p>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Plan changes with automatic proration</li>
+            <li><svg><use href="#i-check"/></svg>Invoices and receipts sent for you</li>
+            <li><svg><use href="#i-check"/></svg>Customer portal: change plan, update card, download invoices, cancel</li>
+          </ul>
+          <div class="pillar-meta"><span class="tag tag-pulse">In development</span></div>
+        </div>
+        <div class="visual reveal d1" aria-hidden="true">
+          <div class="portal">
+            <div class="card">
+              <div class="p-row"><div><div class="p-sub">Your plan</div><div class="p-title">Pro · Yearly</div></div><span class="p-badge">Active</span></div>
+              <div class="p-row"><div class="p-sub">Next invoice</div><div class="inv">$490.00 · Mar 1</div></div>
+              <div class="p-row"><div class="p-sub">Payment method</div><div class="inv">•••• 4242</div></div>
+              <div class="p-btns"><span class="pri">Change plan</span><span>Update card</span></div>
+            </div>
+            <div class="card">
+              <div class="p-row"><div class="inv">INV-0142 · Feb 1</div><span class="p-badge">Paid</span></div>
+              <div class="p-row"><div class="inv">INV-0118 · Jan 1</div><span class="p-badge amber">Retried · Paid</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grow -->
+      <div class="pillar" id="grow">
+        <div class="pillar-copy reveal">
+          <span class="pillar-num">03 — Grow</span>
+          <h3>Turn more visitors <span class="serif">into customers.</span></h3>
+          <p>The levers that move revenue, built in: discounts for launches, smarter trials, recovery for failed payments, and a cancellation flow that gives customers a reason to stay.</p>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Coupons, launch offers and trial extensions</li>
+            <li><svg><use href="#i-check"/></svg>Automatic recovery emails for failed payments</li>
+            <li><svg><use href="#i-check"/></svg>Cancellation flow with pause and retention offers</li>
+          </ul>
+          <div class="pillar-meta"><span class="tag">Planned</span></div>
+        </div>
+        <div class="visual reveal d1" aria-hidden="true">
+          <div class="grow">
+            <div class="card">
+              <div class="card-label"><span>Launch offer</span><span class="tag tag-pulse">Active</span></div>
+              <div class="coupon" style="margin-top:14px"><span class="code">LAUNCH30</span><div><div class="p-title">30% off first 3 months</div><div class="p-sub">Pro and Team plans · example</div></div></div>
+            </div>
+            <div class="card">
+              <div class="recover">
+                <svg class="ring" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#5cf5b0" stroke-width="4" stroke-linecap="round" stroke-dasharray="113" stroke-dashoffset="34" transform="rotate(-90 22 22)"/></svg>
+                <div><div class="p-title">Failed payments recovered</div><div class="p-sub">Smart retries + reminder emails · example</div></div>
+                <div class="inv" style="color:var(--pulse)">70%</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="toggle-row">Offer a pause before cancel<span class="sw on"></span></div>
+              <div class="toggle-row">Extend trial when user is active<span class="sw on"></span></div>
+              <div class="toggle-row">Annual upgrade nudge<span class="sw"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analyze -->
+      <div class="pillar flip" id="analyze">
+        <div class="pillar-copy reveal">
+          <span class="pillar-num">04 — Analyze</span>
+          <h3>Your whole business, <span class="serif">on one live screen.</span></h3>
+          <p>Because the pricing page, checkout and billing all live in Glimify, the numbers connect on their own. See who's on your site right now, where they drop off, and what it means for MRR.</p>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Live visitors, pages and traffic sources</li>
+            <li><svg><use href="#i-check"/></svg>Checkout funnel from pricing view to paid</li>
+            <li><svg><use href="#i-check"/></svg>MRR, churn, trials, ARPA and LTV — no spreadsheets</li>
+          </ul>
+          <div class="pillar-meta"><span class="tag tag-pulse">In development</span></div>
+        </div>
+        <div class="visual reveal d1" aria-hidden="true">
+          <div class="an">
+            <div class="card wide">
+              <div class="card-label"><span class="l"><span class="dot"></span>On your site now</span><span class="mono" style="color:var(--text)"><span data-live-mirror>42</span> visitors</span></div>
+              <div class="map-dots">
+                <i style="left:18%;top:30%"></i><i style="left:26%;top:52%;animation-delay:-.6s"></i><i style="left:47%;top:28%;animation-delay:-1.2s"></i><i style="left:52%;top:40%;animation-delay:-.3s"></i><i style="left:71%;top:45%;animation-delay:-1.7s"></i><i style="left:83%;top:66%;animation-delay:-.9s"></i><i style="left:36%;top:70%;animation-delay:-2s"></i>
+              </div>
+            </div>
+            <div class="card"><div class="card-label"><span>Trial → paid</span></div><div class="metric">31<small>%</small></div><div class="delta">↑ 4 pts</div></div>
+            <div class="card"><div class="card-label"><span>Net new MRR</span></div><div class="metric">+$1,140</div><div class="delta">this month</div></div>
+            <div class="card wide"><div class="alert-line"><svg><use href="#i-alert"/></svg><div><b style="color:var(--text);font-weight:500">Alert:</b> checkout conversion dropped 40% in the last hour. Last change: pricing page edited 52 min ago.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="hr"></div></div>
+
+  <!-- ================= FEATURES ================= -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="tick"></span>Features</span>
+        <h2 class="h2">Built for founders who<br>want to <span class="serif">see everything.</span></h2>
+        <p class="lede">What we're building for version one. Everything below is in development — the waitlist gets it first.</p>
+      </div>
+      <div class="grid-features">
+        <a href="features/live-pulse.html" class="feature fcard reveal"><div class="fi"><svg><use href="#i-pulse"/></svg></div><h4>Live visitors</h4><p>See who's on your site right now, which page they're on and where they came from — updated in real time.</p><span class="fcard-go">Learn more <svg><use href="#i-arrow"/></svg></span></a>
+        <a href="features/checkout-trials.html" class="feature fcard reveal d1"><div class="fi"><svg><use href="#i-funnel"/></svg></div><h4>Checkout funnel</h4><p>Follow every step from pricing view to plan choice to payment, and see exactly where buyers drop off.</p><span class="fcard-go">Learn more <svg><use href="#i-arrow"/></svg></span></a>
+        <a href="features/subscription-billing.html" class="feature fcard reveal d2"><div class="fi"><svg><use href="#i-repeat"/></svg></div><h4>Subscriptions &amp; MRR</h4><p>MRR, churn, trials, upgrades and downgrades, calculated for you from real billing events.</p><span class="fcard-go">Learn more <svg><use href="#i-arrow"/></svg></span></a>
+        <a href="features/revenue-analytics.html" class="feature fcard reveal"><div class="fi"><svg><use href="#i-dollar"/></svg></div><h4>Revenue</h4><p>Gross and net revenue, refunds, ARPA and lifetime value — by plan, by month, by channel.</p><span class="fcard-go">Learn more <svg><use href="#i-arrow"/></svg></span></a>
+        <a href="features/live-pulse.html" class="feature fcard reveal d1"><div class="fi"><svg><use href="#i-bell"/></svg></div><h4>Alerts</h4><p>Get notified the moment something spikes or breaks: a traffic surge, a big upgrade, or a checkout that stops converting.</p><span class="fcard-go">Learn more <svg><use href="#i-arrow"/></svg></span></a>
+        <a href="features/developer-api-webhooks.html" class="feature fcard reveal d2"><div class="fi"><svg><use href="#i-plug"/></svg></div><h4>Integrations <span class="tag">Planned</span></h4><p>Stripe first, so you can import existing customers and keep your payments where they are. More to follow.</p><span class="fcard-go">Learn more <svg><use href="#i-arrow"/></svg></span></a>
+        <a href="features/pricing-page-builder.html" class="feature fcard reveal"><div class="fi"><svg><use href="#i-layout"/></svg></div><h4>Hosted pricing page</h4><p>Beautiful, fast pricing pages you can edit without a deploy — and test against each other.</p><span class="fcard-go">Learn more <svg><use href="#i-arrow"/></svg></span></a>
+        <a href="features/customer-portal.html" class="feature fcard reveal d1"><div class="fi"><svg><use href="#i-user"/></svg></div><h4>Customer portal</h4><p>Let customers upgrade, update cards and download invoices themselves. Fewer support emails.</p><span class="fcard-go">Learn more <svg><use href="#i-arrow"/></svg></span></a>
+        <a href="features/developer-api-webhooks.html" class="feature fcard reveal d2"><div class="fi"><svg><use href="#i-code"/></svg></div><h4>One small snippet</h4><p>A single async script tag for analytics. No heavy SDK, no rebuild of your app.</p><span class="fcard-go">Learn more <svg><use href="#i-arrow"/></svg></span></a>
+      </div>
+      <div class="fall reveal"><a class="btn btn-ghost" href="features.html">Explore all 16 features <svg><use href="#i-arrow"/></svg></a></div>
+      <div class="fall reveal"><a class="btn btn-ghost" href="features.html">Explore all 16 features <svg><use href="#i-arrow"/></svg></a></div>
+      <div class="fall reveal"><a class="btn btn-ghost" href="features.html">Explore all 16 features <svg><use href="#i-arrow"/></svg></a></div>
+      <div class="fall reveal"><a class="btn btn-ghost" href="features.html">Explore all 16 features <svg><use href="#i-arrow"/></svg></a></div>
+      <div class="fall reveal"><a class="btn btn-ghost" href="features.html">Explore all 16 features <svg><use href="#i-arrow"/></svg></a></div>
+      <div class="fall reveal"><a class="btn btn-ghost" href="features.html">Explore all 16 features <svg><use href="#i-arrow"/></svg></a></div>
+    </div>
+  </section>
+
+  <!-- ================= HOW ================= -->
+  <section class="section" id="how" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow"><span class="tick"></span>How it works<span class="tick"></span></span>
+        <h2 class="h2">Live in three steps.<br><span class="serif">No rebuild required.</span></h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <span class="sn">Step 01</span>
+          <h4>Add the snippet</h4>
+          <p>Paste one line into your site's &lt;head&gt;. Visitors and page views start flowing in immediately.</p>
+          <div class="art"><div class="code"><span class="c1">&lt;!-- Glimify (format may change) --&gt;</span>
+<span class="c3">&lt;script</span> <span class="c4">src</span>=<span class="c2">"…/g.js"</span>
+  <span class="c4">data-site</span>=<span class="c2">"your-saas"</span> <span class="c4">async</span><span class="c3">&gt;&lt;/script&gt;</span></div></div>
+        </div>
+        <div class="step reveal d1">
+          <span class="sn">Step 02</span>
+          <h4>Connect Stripe</h4>
+          <p>Link your existing Stripe account to import customers and subscriptions, and to take payments through Glimify checkout.</p>
+          <div class="art"><div class="connect"><span class="who"><span class="lg">S</span><span>Stripe<br><small class="muted">Planned integration</small></span></span><span class="tag">Coming</span></div></div>
+        </div>
+        <div class="step reveal d2">
+          <span class="sn">Step 03</span>
+          <h4>Sell and watch it live</h4>
+          <p>Publish your pricing page, share the link, and watch visitors, checkouts and MRR move in real time.</p>
+          <div class="art"><div class="mini-live"><div class="top"><span><span class="dot" style="display:inline-block;margin-right:8px;vertical-align:middle"></span>Live now</span><span class="mono">example</span></div><div class="big"><span data-live-mirror>42</span> visitors · $8,420 MRR</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STORY ================= -->
+  <section class="section" id="story" style="padding-top:20px">
+    <div class="container">
+      <div class="story reveal">
+        <div>
+          <span class="eyebrow" style="margin-bottom:22px"><span class="tick"></span>Built in public</span>
+          <blockquote>We're building the platform we wanted — <em>and running it on our own product first.</em></blockquote>
+        </div>
+        <div>
+          <p>Glimify is built by the founder of <a class="link" href="https://marketscope.space" target="_blank" rel="noopener">MarketScope</a>, an e-commerce market-intelligence tool. Before anyone else uses Glimify, it will run MarketScope's own pricing, checkout and live dashboard — so every feature is tested on real revenue first.</p>
+          <ul class="timeline">
+            <li class="now"><span class="b"></span><div><b>Now — building the core</b><small>Live analytics, checkout funnel, subscription metrics</small></div></li>
+            <li><span class="b"></span><div><b>Next — running on MarketScope</b><small>Our own product becomes customer #1</small></div></li>
+            <li><span class="b"></span><div><b>Then — early access</b><small>Opened to founders on the waitlist, in small batches</small></div></li>
+            <li><span class="b"></span><div><b>Later — public launch</b><small>With final pricing announced in advance</small></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRICING ================= -->
+  <section class="section" id="pricing" style="padding-top:40px">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow"><span class="tick"></span>Pricing<span class="tick"></span></span>
+        <h2 class="h2">Early access.<br><span class="serif">Pricing coming soon.</span></h2>
+        <p class="lede">We'd rather get the product right than guess at prices. Here's what we can promise today.</p>
+      </div>
+      <div class="pricing-wrap">
+        <div class="price-card ea reveal">
+          <span class="tag tag-pulse">Early access</span>
+          <div class="big">Free <span class="serif">while in early access</span></div>
+          <p>Founders who join from the waitlist use Glimify for free during the early-access period, and help shape what we build next.</p>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Every feature available in early access</li>
+            <li><svg><use href="#i-check"/></svg>No credit card to join</li>
+            <li><svg><use href="#i-check"/></svg>A direct line to the person building it</li>
+          </ul>
+          <a class="btn btn-primary" href="#waitlist">Join the waitlist <svg><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="price-card reveal d1">
+          <span class="tag">After launch</span>
+          <h3 style="margin-top:26px">Paid plans — <span class="serif" style="color:var(--text-2)">to be announced</span></h3>
+          <div class="soon" style="margin-top:12px">
+            <div class="soon-row"><div><b>Announced in advance</b><small>Final pricing is published before early access ends.</small></div></div>
+            <div class="soon-row"><div><b>Clear and in USD</b><small>No hidden fees — you'll see the price before you pay anything.</small></div></div>
+            <div class="soon-row"><div><b>Your choice</b><small>When paid plans arrive, you decide whether to continue. Nothing renews automatically.</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section" id="faq" style="padding-top:40px">
+    <div class="container faq">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="tick"></span>FAQ</span>
+        <h2 class="h2">Questions, <span class="serif">answered.</span></h2>
+        <p class="lede" style="font-size:16px">Something else on your mind? Join the waitlist and reply to our first email — it goes straight to the founder.</p>
+      </div>
+      <div class="faq-list reveal d1">
+        <details open><summary>What is Glimify?<span class="pm"></span></summary><div class="ans"><p>An all-in-one platform for selling a SaaS: hosted pricing pages and checkout, subscriptions and billing, a customer portal, and a real-time admin dashboard for visitors, checkout, MRR and revenue. Think of it as a storefront and control room built specifically for subscription software.</p></div></details>
+        <details><summary>Can I use it today?<span class="pm"></span></summary><div class="ans"><p>Not yet. Glimify is in development. It will run on our own product, MarketScope, first; then we'll open early access to the waitlist in small batches.</p></div></details>
+        <details><summary>How much will it cost?<span class="pm"></span></summary><div class="ans"><p>It's free during early access. Paid plans haven't been set yet — we'll publish them before early access ends, and you'll choose whether to continue.</p></div></details>
+        <details><summary>Do I need a Stripe account?<span class="pm"></span></summary><div class="ans"><p>Stripe is our first planned integration, for importing existing subscriptions and processing payments. Live visitor analytics will work with just the snippet.</p></div></details>
+        <details><summary>Are the numbers on this page real?<span class="pm"></span></summary><div class="ans"><p>No. Every dashboard on this site is a product preview filled with example data for a fictional company. We don't have customers yet, and we won't pretend otherwise.</p></div></details>
+        <details><summary>What happens to my email?<span class="pm"></span></summary><div class="ans"><p>We'll use it only to tell you about early access and the launch. No spam, no selling it — and you can ask us to delete it anytime. See the <a href="privacy.html" style="border-bottom:1px solid var(--line-2)">privacy policy draft</a>.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WAITLIST ================= -->
+  <section id="waitlist" style="padding-top:20px">
+    <div class="container">
+      <div class="waitlist reveal">
+        <svg class="pulse-bg" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="#5cf5b0" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" points="0,100 380,100 420,60 470,150 540,20 610,150 660,60 700,100 1200,100"/></svg>
+        <span class="eyebrow" style="margin-bottom:22px"><span class="tick"></span>Early access<span class="tick"></span></span>
+        <h2 class="h2">Be first to <span class="serif">feel the pulse.</span></h2>
+        <p class="lede">Join the waitlist for early access. Free while in early access, and you'll hear from us only when there's something worth sharing.</p>
+
+        <form class="wl-form" id="waitlist-form" novalidate>
+          <div class="wl-row">
+            <label class="sr-only" for="wl-email">Email address</label>
+            <input id="wl-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@yoursaas.com" required>
+            <button class="btn btn-primary" type="submit">Join the waitlist <svg><use href="#i-arrow"/></svg></button>
+          </div>
+          <div class="wl-extra">
+            <label class="sr-only" for="wl-url">Your product URL (optional)</label>
+            <input id="wl-url" name="product_url" type="url" inputmode="url" placeholder="Your product URL (optional)" autocomplete="url">
+            <label class="sr-only" for="wl-stage">Stage (optional)</label>
+            <select id="wl-stage" name="stage">
+              <option value="">Stage (optional)</option>
+              <option value="idea">Pre-launch / idea</option>
+              <option value="first-revenue">First paying customers</option>
+              <option value="growing">Growing</option>
+              <option value="scaling">Scaling</option>
+            </select>
+          </div>
+          <div class="hp" aria-hidden="true"><label>Leave empty<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label></div>
+          <div class="wl-error" role="alert"></div>
+          <p class="wl-note">No spam. Unsubscribe anytime. Read the <a href="privacy.html">privacy policy (draft)</a>.</p>
+        </form>
+        <div class="wl-success" role="status" aria-live="polite">
+          <span class="ok"><svg><use href="#i-check"/></svg></span>
+          <div><b data-success-title>Thanks — the waitlist opens soon.</b><p data-success-body></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top"><span class="brand-mark"><img src="assets/img/glimify-icon.svg" alt="" width="26" height="26"></span>Glimify</a>
+        <p>The all-in-one platform to sell, bill and grow a SaaS — with your whole business on one live screen. Currently in development.</p>
+      </div>
+      <div><h5>Product</h5><ul><li><a href="#platform">Platform</a></li><li><a href="features.html">All features</a></li><li><a href="#how">How it works</a></li><li><a href="#pricing">Pricing</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="#story">Our story</a></li><li><a href="#faq">FAQ</a></li><li><a href="#waitlist">Join the waitlist</a></li><li><a href="https://marketscope.space" target="_blank" rel="noopener">MarketScope ↗</a></li></ul></div>
+      <div><h5>Legal</h5><ul><li><a href="privacy.html">Privacy (draft)</a></li><li><a href="terms.html">Terms (draft)</a></li></ul></div>
+    </div>
+    <div class="footer-word" aria-hidden="true">Glimify</div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Glimify. Pre-launch — product in development.</span>
+      <span>Dashboard figures on this site are example data. Stripe is a trademark of its owner; listed as a planned integration only.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/features.js"></script>
+</body>
+</html>

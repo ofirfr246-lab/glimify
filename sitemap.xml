@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://glimify.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://glimify.app/features.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://glimify.app/features/live-pulse.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/revenue-analytics.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/ai-growth-advisor.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/pricing-page-builder.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/checkout-trials.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/affiliate-referrals.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/subscription-billing.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/usage-metering.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/dunning-recovery.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/customer-portal.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/tax-multi-currency.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/churn-prevention.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/onboarding-activation.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/lifecycle-messaging.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/entitlements-feature-flags.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/features/developer-api-webhooks.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://glimify.app/privacy.html</loc><changefreq>weekly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://glimify.app/terms.html</loc><changefreq>weekly</changefreq><priority>0.2</priority></url>
+</urlset>
