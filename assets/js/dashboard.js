@@ -12,18 +12,20 @@ var supabase = createClient(CFG.SUPABASE_URL, CFG.SUPABASE_PUBLISHABLE_KEY, {
 });
 
 var $ = function (id) { return document.getElementById(id); };
-var state = { data: null, range: "30d", metric: "signups", route: "home", email: "", lastOk: 0, timer: null };
+var state = { data: null, range: "30d", metric: "lead_total", route: "home", email: "", lastOk: 0, timer: null };
 try { var sr = localStorage.getItem("glimify-dash-range"); if (/^(today|7d|30d)$/.test(sr)) state.range = sr; } catch (e) {}
 
 var METRICS = [
   { k: "visitors", label: "Sessions", title: "Sessions over time", route: "visitors" },
   { k: "pageviews", label: "Page views", title: "Page views over time", route: "visitors" },
-  { k: "signups", label: "Signups", title: "Signups over time", route: "customers" },
-  { k: "leads", label: "Leads", title: "Leads over time", route: "leads" },
+  { k: "lead_total", label: "Leads", title: "Leads over time (new accounts + form leads)", route: "leads" },
   { k: "waitlist", label: "Waitlist joins", title: "Waitlist joins over time", route: "waitlist" },
   { k: "reports", label: "Reports run", title: "Reports over time", route: "reports" }
 ];
-var MBY = {}; METRICS.forEach(function (m) { MBY[m.k] = m; });
+var MBY = {}; METRICS.concat([
+  { k: "signups", label: "New accounts", title: "New accounts over time", route: "customers" },
+  { k: "leads", label: "Form leads", title: "Form leads over time", route: "leads" }
+]).forEach(function (m) { MBY[m.k] = m; });
 var ROUTES = ["home", "analytics", "visitors", "customers", "leads", "waitlist", "reports", "settings"];
 var TITLES = { home: "Home", analytics: "Analytics", visitors: "Visitors", customers: "Customers", leads: "Leads", waitlist: "Waitlist", reports: "Reports", settings: "Settings" };
 
@@ -150,7 +152,7 @@ function bindCharts(root) {
 
 /* ---------- building blocks ---------- */
 function metricStrip() {
-  return '<div class="metrics" role="tablist">' + METRICS.map(function (m) {
+  return '<div class="metrics m' + METRICS.length + '" role="tablist">' + METRICS.map(function (m) {
     var s = series(m.k), total = sum(s.cur), ch = change(total, s.prevSame);
     return '<button class="metric' + (state.metric === m.k ? " on" : "") + '" data-metric="' + m.k + '" role="tab" aria-selected="' + (state.metric === m.k) + '">' +
       '<span class="m-label">' + esc(m.label) + '</span><div class="m-row"><span class="m-val">' + num(total) + '</span><span class="chg ' + ch.cls + '">' + ch.html + "</span></div>" +
@@ -222,8 +224,8 @@ var VIEWS = {
       '<div class="grid g2">' +
       card("Top plans", barList(entries(u.plans).map(function (p) { return [cap(p[0]), p[1]]; }), "No customer profiles yet"), { sub: num(u.total) + " customers" }) +
       card("Sign-in methods", barList(entries(u.providers).map(function (p) { return [cap(p[0]), p[1]]; }), "No customers yet")) +
-      card("Recent signups", table(d.recent_signups, SIGNUP_HEADS, signupCells, "No signups yet", 6), { cls: "span2", link: "customers" }) +
-      card("Recent leads", table(d.recent_leads, ["Lead", "Source", "Page", "Date"], leadCells, "No leads yet", 5), { link: "leads" }) +
+      card("Recent leads · new accounts", table(d.recent_signups, SIGNUP_HEADS, signupCells, "No new accounts yet", 6), { cls: "span2", link: "customers" }) +
+      card("Recent leads · forms", table(d.recent_leads, ["Lead", "Source", "Page", "Date"], leadCells, "No form leads yet", 5), { link: "leads" }) +
       card("Waitlist", table(d.recent_waitlist, ["Email", "Stage", "Source", "Date"], waitCells, "No one on the Glimify waitlist yet", 5), { link: "waitlist" }) +
       card("Top pages · 30 days", barList(((d.visitors || {}).top_pages_30d || []).map(function (p) { return [p.site + " " + p.path, p.views]; }), trackingEmpty())) +
       card("Product usage", usageList(d)) +
@@ -258,10 +260,11 @@ var VIEWS = {
   },
   leads: function (d) {
     var l = d.leads || {};
-    return head("Leads", "Contact / lead forms on MarketScope") +
-      '<div class="stack"><div class="stat-row">' + stat("Total leads", num(l.total), "all time") + rangeStat("New leads", "leads") + stat("Last 24 hours", num(l.last_24h)) + stat("Last 7 days", num(l.last_7d)) + "</div>" +
-      '<div class="grid g2">' + chartCard("leads", { h: 200 }) + card("Leads by source", barList(entries(l.by_source), "No leads yet")) + "</div>" +
-      card("Recent leads", table(d.recent_leads, ["Lead", "Source", "Page", "Date"], leadCells, "No leads yet"), { sub: "latest 25" }) + "</div>";
+    return head("Leads", "New MarketScope accounts + contact / lead form submissions") +
+      '<div class="stack"><div class="stat-row">' + stat("Total leads", num((Number(l.total) || 0) + (Number((d.users || {}).total) || 0)), num(l.total) + " form · " + num((d.users || {}).total) + " accounts") + rangeStat("New leads", "lead_total") + stat("Last 24 hours", num(l.last_24h)) + stat("Last 7 days", num(l.last_7d)) + "</div>" +
+      chartCard("lead_total", { h: 220 }) + '<div class="grid g2">' + chartCard("leads", { h: 200 }) + card("Leads by source", barList(entries(l.by_source), "No leads yet")) + "</div>" +
+      card("Recent form leads", table(d.recent_leads, ["Lead", "Source", "Page", "Date"], leadCells, "No form leads yet"), { sub: "latest 25" }) +
+      card("Recent new accounts", table(d.recent_signups, SIGNUP_HEADS, signupCells, "No new accounts yet"), { sub: "latest 25" }) + "</div>";
   },
   waitlist: function (d) {
     var w = d.waitlist || {};
@@ -369,6 +372,55 @@ $("btn-logout").addEventListener("click", logout);
 $("btn-logout2").addEventListener("click", logout);
 $("btn-refresh").addEventListener("click", function () { load(); });
 
+/* ---------- leads = new accounts + form leads; alert sounds ---------- */
+function addLeadTotals(d) {
+  (d.daily || []).concat(d.hourly || []).forEach(function (x) { x.lead_total = (Number(x.signups) || 0) + (Number(x.leads) || 0); });
+}
+var SND = { lead: "assets/sounds/new-subscription.mp3", subscribe: "assets/sounds/renewal-crypto.mp3" };
+var sndMuted = false, sndUnlocked = false, sndPending = null, prevCounts = null;
+try { sndMuted = localStorage.getItem("glimify-dash-muted") === "1"; } catch (e) {}
+function playSnd(k) {
+  if (sndMuted) return;
+  if (!sndUnlocked) { sndPending = k; syncSndBtn(); return; }
+  try { var a = new Audio(SND[k]); a.volume = 0.7; var p = a.play(); if (p && p.catch) p.catch(function () { sndUnlocked = false; sndPending = k; syncSndBtn(); }); } catch (e) {}
+}
+/* Browsers allow sound only after the first click / key press on the page. */
+function unlockSnd() {
+  if (sndUnlocked) return; sndUnlocked = true; syncSndBtn();
+  if (sndPending) { var k = sndPending; sndPending = null; setTimeout(function () { playSnd(k); }, 100); }
+}
+["pointerdown", "keydown", "touchstart"].forEach(function (ev) { document.addEventListener(ev, unlockSnd, { capture: true, passive: true }); });
+function syncSndBtn() {
+  var b = $("btn-sound"); if (!b) return;
+  b.innerHTML = sndMuted ? '<svg viewBox="0 0 20 20"><path d="M4 8h3l4-3v10l-4-3H4z"/><path d="m14 8 4 4M18 8l-4 4"/></svg>' : '<svg viewBox="0 0 20 20"><path d="M4 8h3l4-3v10l-4-3H4z"/><path d="M14 7.5a3.5 3.5 0 0 1 0 5M16 5.5a6.5 6.5 0 0 1 0 9"/></svg>';
+  b.setAttribute("aria-label", sndMuted ? "Unmute lead sounds" : "Mute lead sounds");
+  b.title = sndMuted ? "Lead sounds off" : !sndUnlocked ? "Click anywhere to enable lead sounds" : "Lead sounds on";
+  b.style.color = sndMuted ? "var(--faint)" : !sndUnlocked ? "var(--warn)" : "";
+}
+(function addSndBtn() {
+  var b = document.createElement("button");
+  b.className = "icon-btn"; b.id = "btn-sound"; b.type = "button";
+  var right = document.querySelector(".tb-right"), ref = $("btn-theme");
+  if (right) right.insertBefore(b, ref || null);
+  b.addEventListener("click", function () {
+    sndMuted = !sndMuted; try { localStorage.setItem("glimify-dash-muted", sndMuted ? "1" : "0"); } catch (e) {}
+    unlockSnd(); syncSndBtn(); if (!sndMuted) playSnd("lead");
+  });
+  syncSndBtn();
+})();
+/* Between refreshes: a new MarketScope account or form lead plays the lead chime;
+   a new paid subscription (Stripe fulfillment) plays the coin sound. */
+function alertNew(d) {
+  var c = { lead: (Number((d.users || {}).total) || 0) + (Number((d.leads || {}).total) || 0), subscribe: Number((d.billing || {}).fulfillments) || 0 };
+  if (prevCounts) {
+    if (c.subscribe > prevCounts.subscribe) playSnd("subscribe");
+    else if (c.lead > prevCounts.lead) playSnd("lead");
+    var n = c.lead - prevCounts.lead;
+    if (n > 0 && document.hidden) document.title = "(" + n + " new lead" + (n === 1 ? "" : "s") + ") " + document.title;
+  }
+  prevCounts = c;
+}
+
 /* ---------- data ---------- */
 async function load() {
   var res = await supabase.rpc("glimify_dashboard_stats");
@@ -384,6 +436,8 @@ async function load() {
     return;
   }
   $("dash-err").textContent = "";
+  addLeadTotals(res.data);
+  alertNew(res.data);
   state.data = res.data; state.lastOk = Date.now();
   show("view-dash"); render(); markLive(true);
 }
