@@ -225,3 +225,8 @@ svg { display: block; }
   .card { padding: 14px; }
   .tbl-wrap { margin: 0 -14px; padding: 0 14px; }
 }
+
+/* 5-metric strip (Leads = new accounts + form leads) */
+.metrics.m5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 1180px) { .metrics.m5 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .metrics.m5 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
