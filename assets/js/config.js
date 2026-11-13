@@ -16,3 +16,9 @@ window.GLIMIFY_CONFIG = {
     Prefer: "return=minimal"
   }
 };
+
+/* Private live dashboard (dashboard.html). Uses the same PUBLIC publishable key.
+   Data is protected server-side: public.glimify_dashboard_stats() only answers
+   for accounts listed in public.glimify_admins. */
+window.GLIMIFY_CONFIG.SUPABASE_URL = "https://izcqyzrzjtogsfrffknp.supabase.co";
+window.GLIMIFY_CONFIG.SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Q4JbiEEDoJzbcBJsmsq6rA_7I-_dkI2";
