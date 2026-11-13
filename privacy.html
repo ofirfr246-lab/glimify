@@ -38,23 +38,23 @@
     <h2>2. What we collect on this website</h2>
     <ul>
       <li><b>Waitlist sign-ups:</b> your email address and, if you choose to give them, your product URL and company stage.</li>
+      <li><b>Anonymous page views:</b> the page you visited, the site that referred you (domain only), the time, and a random session ID kept in your browser. We do not store your IP address, set cookies, or track you across other sites. Browsers with Do Not Track or Global Privacy Control turned on are not counted.</li>
       <li><b>Technical data:</b> our hosting provider may log basic request data (such as IP address and browser type) for security and reliability.</li>
     </ul>
-    <p>At the time of writing, the waitlist form does not send or store any data. This section describes how it will work once sign-ups are switched on.</p>
-    <h2>3. How we use it</h2>
+        <h2>3. How we use it</h2>
     <ul>
       <li>To email you about early access and the launch of Glimify.</li>
       <li>To understand who is interested, so we build the right product.</li>
     </ul>
     <p>We do not sell your personal data and do not use it for advertising.</p>
     <h2>4. Where it is stored</h2>
-    <p>Waitlist data will be stored with <span class="fill">[provider, e.g. database host]</span> in <span class="fill">[region]</span>. Access is limited to the Glimify team.</p>
+    <p>Waitlist and page-view data are stored with Supabase, our database provider. Access is limited to the Glimify team.</p>
     <h2>5. How long we keep it</h2>
     <p>Until you unsubscribe or ask us to delete it, or until <span class="fill">[retention period]</span> after launch, whichever is sooner.</p>
     <h2>6. Your rights</h2>
     <p>You can ask to see, correct or delete your data, or unsubscribe at any time, by emailing <span class="fill">[contact email]</span>. Depending on where you live (for example the EU/UK, Israel or California), you may have additional rights under local law.</p>
     <h2>7. Cookies</h2>
-    <p>This marketing site does not set cookies of its own. <span class="fill">[Update if analytics are added.]</span></p>
+    <p>This marketing site does not set cookies of its own. Our anonymous page-view counter uses your browser&#39;s local storage to keep a random session ID, which resets after 30 minutes of inactivity.</p>
     <h2>8. The Glimify product</h2>
     <p>When the product launches, it will process data about our customers' own website visitors and subscribers. That processing will be covered by a separate, final privacy policy and a data processing agreement.</p>
     <h2>9. Changes</h2>
@@ -71,5 +71,6 @@
 </footer>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/track.js" defer></script>
 </body>
 </html>

@@ -1,96 +1,98 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Live dashboard — Glimify</title>
+  <title>Dashboard · Glimify</title>
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#060708">
+  <meta name="theme-color" content="#0b0c0e">
   <link rel="icon" type="image/svg+xml" href="assets/img/glimify-icon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-  <link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("glimify-dash-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
   <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
-<body class="dash-body">
-<div class="atmos" aria-hidden="true"></div>
+<body>
 
-<header class="nav scrolled">
-  <div class="container nav-inner">
-    <a class="brand" href="index.html" aria-label="Glimify home">
-      <span class="brand-mark"><img src="assets/img/glimify-icon.svg" alt="" width="26" height="26"></span>
-      Glimify <span class="tag tag-pulse dash-tag">Live · MarketScope</span>
-    </a>
-    <div class="nav-cta">
-      <span class="dash-live" id="live-ind" hidden><span class="dot"></span><span id="live-text">LIVE</span></span>
-      <button class="btn btn-ghost btn-sm" id="btn-refresh" hidden>Refresh</button>
-      <button class="btn btn-ghost btn-sm" id="btn-logout" hidden>Log out</button>
-      <a class="btn btn-ghost btn-sm" href="index.html">← Site</a>
-    </div>
-  </div>
-</header>
+<!-- Auth screens -->
+<div class="auth-wrap" id="view-loading"><p class="muted">Connecting…</p></div>
 
-<main id="main" class="container dash-main">
-
-  <!-- Loading -->
-  <section class="dash-state" id="view-loading">
-    <p class="mono muted">Connecting…</p>
-  </section>
-
-  <!-- Login -->
-  <section class="dash-card dash-login" id="view-login" hidden>
-    <span class="eyebrow"><span class="tick"></span>Private</span>
-    <h1 class="h3">Sign in with your MarketScope account</h1>
-    <p class="muted">This dashboard shows real MarketScope data. Only approved admin accounts can see it.</p>
-    <button class="btn btn-primary dash-full" id="btn-google">Continue with Google</button>
-    <div class="dash-or"><span>or</span></div>
-    <form id="form-login" class="dash-form" novalidate>
+<div class="auth-wrap" id="view-login" hidden>
+  <div class="auth-card">
+    <div class="auth-brand"><img src="assets/img/glimify-icon.svg" alt="" width="28" height="28"><span>Glimify</span></div>
+    <h1>Log in</h1>
+    <p class="muted">Use your MarketScope account. Only approved admin accounts can open this dashboard.</p>
+    <button class="btn btn-primary btn-block" id="btn-google">Continue with Google</button>
+    <div class="auth-or"><span>or</span></div>
+    <form id="form-login" class="auth-form" novalidate>
       <label>Email<input type="email" id="in-email" autocomplete="email" required></label>
       <label>Password<input type="password" id="in-pass" autocomplete="current-password" required></label>
-      <button class="btn btn-ghost dash-full" type="submit">Log in</button>
+      <button class="btn btn-block" type="submit">Log in with email</button>
     </form>
-    <p class="dash-err" id="login-err" role="alert"></p>
-  </section>
+    <p class="err" id="login-err" role="alert"></p>
+    <a class="auth-back" href="index.html">← Back to site</a>
+  </div>
+</div>
 
-  <!-- No access -->
-  <section class="dash-card dash-login" id="view-denied" hidden>
-    <span class="eyebrow"><span class="tick"></span>No access</span>
-    <h1 class="h3">This account can’t open the dashboard</h1>
-    <p class="muted">You’re signed in as <b class="mono" id="denied-email"></b>, but it isn’t on the admin list.</p>
-    <button class="btn btn-ghost dash-full" id="btn-logout2">Log out</button>
-  </section>
+<div class="auth-wrap" id="view-denied" hidden>
+  <div class="auth-card">
+    <div class="auth-brand"><img src="assets/img/glimify-icon.svg" alt="" width="28" height="28"><span>Glimify</span></div>
+    <h1>No access</h1>
+    <p class="muted">You’re signed in as <b id="denied-email"></b>, but this account isn’t on the admin list.</p>
+    <button class="btn btn-block" id="btn-logout2">Log out</button>
+  </div>
+</div>
 
-  <!-- Dashboard -->
-  <section id="view-dash" hidden>
-    <div class="dash-head">
-      <div>
-        <span class="eyebrow"><span class="tick"></span>MarketScope · real data</span>
-        <h1 class="dash-title">Live pulse</h1>
-      </div>
-      <p class="mono muted dash-updated">Updated <span id="updated">—</span> · refreshes every 60s</p>
+<!-- App shell -->
+<div class="app" id="view-dash" hidden>
+  <aside class="sb" id="sidebar" aria-label="Dashboard navigation">
+    <div class="sb-brand">
+      <img src="assets/img/glimify-icon.svg" alt="" width="24" height="24">
+      <span>Glimify</span>
+      <span class="sb-src">MarketScope</span>
     </div>
+    <nav class="sb-nav" id="sb-nav">
+      <a href="#home" data-route="home"><svg viewBox="0 0 20 20"><path d="M3 9.5 10 4l7 5.5V16a1 1 0 0 1-1 1h-3.5v-4.5h-5V17H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+      <a href="#analytics" data-route="analytics"><svg viewBox="0 0 20 20"><path d="M4 16V9M8 16V5M12 16v-5M16 16V7"/></svg>Analytics</a>
+      <a href="#visitors" data-route="visitors"><svg viewBox="0 0 20 20"><path d="M2 10s3-5.5 8-5.5S18 10 18 10s-3 5.5-8 5.5S2 10 2 10z"/><circle cx="10" cy="10" r="2.5"/></svg>Visitors</a>
+      <a href="#customers" data-route="customers"><svg viewBox="0 0 20 20"><circle cx="10" cy="7" r="3"/><path d="M4 17c.6-3.2 3-5 6-5s5.4 1.8 6 5"/></svg>Customers</a>
+      <a href="#leads" data-route="leads"><svg viewBox="0 0 20 20"><path d="M3 5h14v10H3z"/><path d="m3 5 7 6 7-6"/></svg>Leads</a>
+      <a href="#waitlist" data-route="waitlist"><svg viewBox="0 0 20 20"><path d="M5 4h10M5 10h10M5 16h6"/></svg>Waitlist</a>
+      <a href="#reports" data-route="reports"><svg viewBox="0 0 20 20"><path d="M5 3h7l3 3v11H5z"/><path d="M8 10h5M8 13h5"/></svg>Reports</a>
+      <div class="sb-sep"></div>
+      <a href="#settings" data-route="settings"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="2.6"/><path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2M4.7 4.7l1.4 1.4M13.9 13.9l1.4 1.4M4.7 15.3l1.4-1.4M13.9 6.1l1.4-1.4"/></svg>Settings</a>
+    </nav>
+    <div class="sb-foot">
+      <a href="index.html">← Glimify site</a>
+    </div>
+  </aside>
+  <div class="sb-overlay" id="sb-overlay"></div>
 
-    <div class="dash-kpis" id="kpis"></div>
-
-    <div class="dash-card dash-chart-card">
-      <div class="dash-card-head">
-        <h2 class="h3">Daily activity · last 30 days</h2>
-        <div class="dash-seg" id="series-seg" role="tablist">
-          <button data-s="signups" class="on">Signups</button><button data-s="leads">Leads</button><button data-s="waitlist">Waitlist</button><button data-s="reports">Reports</button>
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="btn-menu" aria-label="Open navigation"><svg viewBox="0 0 20 20"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
+      <div class="tb-range" id="range" role="group" aria-label="Date range">
+        <button data-r="today">Today</button><button data-r="7d">7 days</button><button data-r="30d" class="on">30 days</button>
+      </div>
+      <span class="tb-compare muted" id="compare-label"></span>
+      <div class="tb-right">
+        <span class="live-pill" id="live-ind"><span class="dot"></span><span id="live-text">Live</span></span>
+        <button class="icon-btn" id="btn-refresh" aria-label="Refresh" title="Refresh"><svg viewBox="0 0 20 20"><path d="M16 10a6 6 0 1 1-1.8-4.3M16 4v3.5h-3.5"/></svg></button>
+        <button class="icon-btn" id="btn-theme" aria-label="Toggle light / dark" title="Light / dark"><svg viewBox="0 0 20 20"><path d="M15.5 12.5A6.5 6.5 0 0 1 7.5 4.5a6.5 6.5 0 1 0 8 8z"/></svg></button>
+        <div class="acct">
+          <button class="acct-btn" id="btn-acct" aria-haspopup="true" aria-expanded="false"><span class="avatar" id="avatar">O</span></button>
+          <div class="acct-menu" id="acct-menu" hidden>
+            <div class="acct-email" id="acct-email"></div>
+            <a href="#settings">Settings</a>
+            <button id="btn-logout">Log out</button>
+          </div>
         </div>
       </div>
-      <div id="chart" class="dash-chart"></div>
-    </div>
-
-    <div class="dash-grid">
-      <div class="dash-card"><div class="dash-card-head"><h2 class="h3">Recent signups</h2></div><div id="t-signups"></div></div>
-      <div class="dash-card"><div class="dash-card-head"><h2 class="h3">Recent leads</h2></div><div id="t-leads"></div></div>
-      <div class="dash-card"><div class="dash-card-head"><h2 class="h3">Glimify waitlist</h2></div><div id="t-waitlist"></div></div>
-      <div class="dash-card"><div class="dash-card-head"><h2 class="h3">Product usage</h2></div><div id="t-usage"></div></div>
-    </div>
-    <p class="dash-err" id="dash-err" role="alert"></p>
-  </section>
-</main>
+    </header>
+    <main class="content" id="content" tabindex="-1"></main>
+    <p class="err content-err" id="dash-err" role="alert"></p>
+  </div>
+</div>
+<div class="tip" id="tip" hidden></div>
 
 <script src="assets/js/config.js"></script>
 <script type="module" src="assets/js/dashboard.js"></script>
