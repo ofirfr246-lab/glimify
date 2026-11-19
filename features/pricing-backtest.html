@@ -79,15 +79,19 @@
       </ul>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-ghost btn-sm" href="../features.html">All features</a>
-      <a class="btn btn-primary btn-sm" href="#waitlist">Join the waitlist</a>
+      <a class="btn btn-ghost btn-sm" href="../dashboard.html"><span class="dot"></span>Live dashboard</a>
+      <a class="btn btn-ghost btn-sm" href="../app.html#login">Log in</a>
+      <a class="btn btn-primary btn-sm" href="../app.html#signup">Get started</a>
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span></button>
     </div>
   </div>
   <div class="mobile-menu" id="mobile-menu">
     <a href="../features.html">Features</a>
     <a href="../index.html#markets">Markets</a><a href="../index.html#platform">Platform</a><a href="../index.html#how">How it works</a><a href="../index.html#pricing">Pricing</a><a href="../index.html#faq">FAQ</a>
-    <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+    <a href="../dashboard.html">Open live dashboard</a>
+    <a href="../app.html#login">Log in</a>
+    <a href="#waitlist">Join the waitlist</a>
+    <a class="btn btn-primary" href="../app.html#signup">Get started</a>
   </div>
 </header>
 <main id="main" class="fpage" data-feature="pricing-backtest">
@@ -99,25 +103,25 @@
       <p class="lede reveal d2">Traders backtest strategies before risking money. Do the same with pricing: replay your real subscription history with a different price, trial length or plan mix, and see an estimated outcome — with clear assumptions and ranges.</p>
       <div class="hero-ctas reveal d3"><a class="btn btn-primary" href="#waitlist">Get early access <svg><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="../features.html">All features</a></div>
       <div class="stage fstage">
-        <div class="window" role="img" aria-label="Product preview of Pricing backtest &amp; what-if simulator with example data for a fictional SaaS company.">
+        <div class="window" role="img" aria-label="Product preview of Pricing backtest &amp; what-if simulator (illustration, no sample figures).">
           <div class="window-inner">
-            <div class="window-bar"><div class="lights"><i></i><i></i><i></i></div><div class="url"><svg><use href="#i-lock"/></svg>admin.glimify.app/pricing-backtest</div><span class="preview-flag">Product preview · example data</span></div>
+            <div class="window-bar"><div class="lights"><i></i><i></i><i></i></div><div class="url"><svg><use href="#i-lock"/></svg>admin.glimify.app/pricing-backtest</div><span class="preview-flag">Preview · no sample data</span></div>
             <div class="fx" aria-hidden="true">
 <div class="fx-pad fx-cols">
   <div class="card fx-span4"><div class="card-label"><span>Backtest · Pro price change · last 12 months</span><span class="tag mk-tag-warn">Simulated estimate</span></div>
     <div class="mk-bt">
-      <div class="mk-bt-ctl"><div class="mk-slider"><small>Pro price</small><div><span>$49</span><div class="mk-sl"><i data-mk-slfill></i><b data-mk-slknob></b></div><span data-mk-price>$59</span></div></div>
+      <div class="mk-bt-ctl"><div class="mk-slider"><small>Pro price</small><div><span>—</span><div class="mk-sl"><i data-mk-slfill></i><b data-mk-slknob></b></div><span data-mk-price>—</span></div></div>
         <div class="mk-slider"><small>Price sensitivity</small><div class="fx-seg"><span>Low</span><span class="on">Medium</span><span>High</span></div></div>
-        <div class="mk-res"><div><small>Est. MRR after 12m</small><b class="up" data-mk-res1>+11% to +16%</b></div><div><small>Est. extra churn</small><b class="dn" data-mk-res2>+0.4 pts</b></div><div><small>Est. conversion</small><b data-mk-res3>−6%</b></div></div></div>
+        <div class="mk-res"><div><small>Est. MRR after 12m</small><b class="up" data-mk-res1>— to —</b></div><div><small>Est. extra churn</small><b class="dn" data-mk-res2>—</b></div><div><small>Est. conversion</small><b data-mk-res3>—</b></div></div></div>
       <svg class="mk-btchart" viewBox="0 0 600 220" preserveAspectRatio="none"><g stroke="rgba(255,255,255,.05)"><line x1="0" x2="600" y1="55" y2="55"/><line x1="0" x2="600" y1="110" y2="110"/><line x1="0" x2="600" y1="165" y2="165"/></g>
         <path d="M0 190 C80 182 140 170 200 160 S320 138 380 124 S500 100 600 90" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-dasharray="4 5" vector-effect="non-scaling-stroke"/>
         <path data-mk-btband d="M0 190 C80 178 140 160 200 146 S320 116 380 98 S500 66 600 50 L600 78 C500 90 440 104 380 114 S280 140 200 154 S80 184 0 190Z" fill="rgba(92,245,176,.14)"/>
         <path data-mk-btline d="M0 190 C80 180 140 165 200 150 S320 126 380 106 S500 78 600 64" fill="none" stroke="#5cf5b0" stroke-width="2.4" vector-effect="non-scaling-stroke"/></svg>
     </div>
-    <div class="mk-legend"><span><i style="background:rgba(255,255,255,.4)"></i>Actual MRR (example history)</span><span><i class="ma7"></i>Simulated · range shaded</span></div>
+    <div class="mk-legend"><span><i style="background:rgba(255,255,255,.4)"></i>Actual MRR</span><span><i class="ma7"></i>Simulated · range shaded</span></div>
   </div>
 </div></div>
-            <div class="example-note fx-note">Product preview · example data for a fictional SaaS. Pricing backtest &amp; what-if simulator is planned — not live yet.</div>
+            <div class="example-note fx-note">Illustration only — no sample figures. Pricing backtest &amp; what-if simulator is planned; your own live numbers appear here once it ships.</div>
           </div>
         </div>
       </div>
@@ -197,7 +201,7 @@
     <div class="footer-word" aria-hidden="true">Glimify</div>
     <div class="footer-base">
       <span>© <span data-year>2026</span> Glimify. Pre-launch — product in development.</span>
-      <span>Every feature on this site is upcoming. Product previews use example data for a fictional company.</span>
+      <span>Product previews show layouts only — no sample or demo data.</span>
     </div>
   </div>
 </footer>

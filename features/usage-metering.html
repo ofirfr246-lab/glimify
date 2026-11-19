@@ -79,15 +79,19 @@
       </ul>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-ghost btn-sm" href="../features.html">All features</a>
-      <a class="btn btn-primary btn-sm" href="#waitlist">Join the waitlist</a>
+      <a class="btn btn-ghost btn-sm" href="../dashboard.html"><span class="dot"></span>Live dashboard</a>
+      <a class="btn btn-ghost btn-sm" href="../app.html#login">Log in</a>
+      <a class="btn btn-primary btn-sm" href="../app.html#signup">Get started</a>
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span></button>
     </div>
   </div>
   <div class="mobile-menu" id="mobile-menu">
     <a href="../features.html">Features</a>
     <a href="../index.html#markets">Markets</a><a href="../index.html#platform">Platform</a><a href="../index.html#how">How it works</a><a href="../index.html#pricing">Pricing</a><a href="../index.html#faq">FAQ</a>
-    <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+    <a href="../dashboard.html">Open live dashboard</a>
+    <a href="../app.html#login">Log in</a>
+    <a href="#waitlist">Join the waitlist</a>
+    <a class="btn btn-primary" href="../app.html#signup">Get started</a>
   </div>
 </header>
 <main id="main" class="fpage" data-feature="usage-metering">
@@ -99,24 +103,24 @@
       <p class="lede reveal d2">Send usage events from your app and Glimify meters them in real time, applies tiers or included allowances, and bills the right amount at the end of each period — with live usage your customers can see.</p>
       <div class="hero-ctas reveal d3"><a class="btn btn-primary" href="#waitlist">Get early access <svg><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="../features.html">All features</a></div>
       <div class="stage fstage">
-        <div class="window" role="img" aria-label="Product preview of Usage-based metering with example data for a fictional SaaS company.">
+        <div class="window" role="img" aria-label="Product preview of Usage-based metering (illustration, no sample figures).">
           <div class="window-inner">
-            <div class="window-bar"><div class="lights"><i></i><i></i><i></i></div><div class="url"><svg><use href="#i-lock"/></svg>admin.glimify.app/usage-metering</div><span class="preview-flag">Product preview · example data</span></div>
+            <div class="window-bar"><div class="lights"><i></i><i></i><i></i></div><div class="url"><svg><use href="#i-lock"/></svg>admin.glimify.app/usage-metering</div><span class="preview-flag">Preview · no sample data</span></div>
             <div class="fx" aria-hidden="true">
 <div class="fx-pad fx-cols">
   <div class="card fx-span2"><div class="card-label"><span class="l"><span class="dot"></span>API requests · this billing period</span><span class="tag tag-pulse">Metering</span></div>
-    <div class="fx-meter-val"><b data-fx-meter>812,400</b><small>/ 1,000,000 included</small></div>
-    <div class="fx-meter"><i data-fx-meterbar style="width:81%"></i><span style="left:80%" class="mk">80% alert</span></div>
-    <div class="fx-events"><span class="mono" data-fx-eps>142</span> events / sec · example</div>
+    <div class="fx-meter-val"><b data-fx-meter>—</b><small>/ — included</small></div>
+    <div class="fx-meter"><i data-fx-meterbar style="width:81%"></i><span style="left:80%" class="mk">— alert</span></div>
+    <div class="fx-events"><span class="mono" data-fx-eps>—</span> events / sec</div>
   </div>
   <div class="card fx-span2"><div class="card-label"><span>Graduated pricing · overage</span></div>
-    <table class="fx-table"><tr><th>Tier</th><th>Requests</th><th>Price</th></tr><tr><td>Included</td><td>0 – 1M</td><td>in plan</td></tr><tr class="on"><td>Tier 1</td><td>1M – 5M</td><td>$0.40 / 1k</td></tr><tr><td>Tier 2</td><td>5M +</td><td>$0.25 / 1k</td></tr></table>
+    <table class="fx-table"><tr><th>Tier</th><th>Requests</th><th>Price</th></tr><tr><td>Included</td><td>—</td><td>in plan</td></tr><tr class="on"><td>Tier —</td><td>—</td><td>— / —</td></tr><tr><td>Tier —</td><td>— +</td><td>— / —</td></tr></table>
   </div>
   <div class="card fx-span2"><div class="code"><span class="c1">// Report usage from your app (illustrative API shape)</span>
 <span class="c3">POST</span> /v1/usage
 { <span class="c4">"customer"</span>: <span class="c2">"cus_8f2k"</span>, <span class="c4">"meter"</span>: <span class="c2">"api_requests"</span>, <span class="c4">"value"</span>: <span class="c2">1</span> }</div></div>
 </div></div>
-            <div class="example-note fx-note">Product preview · example data for a fictional SaaS. Usage-based metering is planned — not live yet.</div>
+            <div class="example-note fx-note">Illustration only — no sample figures. Usage-based metering is planned; your own live numbers appear here once it ships.</div>
           </div>
         </div>
       </div>
@@ -196,7 +200,7 @@
     <div class="footer-word" aria-hidden="true">Glimify</div>
     <div class="footer-base">
       <span>© <span data-year>2026</span> Glimify. Pre-launch — product in development.</span>
-      <span>Every feature on this site is upcoming. Product previews use example data for a fictional company.</span>
+      <span>Product previews show layouts only — no sample or demo data.</span>
     </div>
   </div>
 </footer>

@@ -79,15 +79,19 @@
       </ul>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-ghost btn-sm" href="../features.html">All features</a>
-      <a class="btn btn-primary btn-sm" href="#waitlist">Join the waitlist</a>
+      <a class="btn btn-ghost btn-sm" href="../dashboard.html"><span class="dot"></span>Live dashboard</a>
+      <a class="btn btn-ghost btn-sm" href="../app.html#login">Log in</a>
+      <a class="btn btn-primary btn-sm" href="../app.html#signup">Get started</a>
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span></button>
     </div>
   </div>
   <div class="mobile-menu" id="mobile-menu">
     <a href="../features.html">Features</a>
     <a href="../index.html#markets">Markets</a><a href="../index.html#platform">Platform</a><a href="../index.html#how">How it works</a><a href="../index.html#pricing">Pricing</a><a href="../index.html#faq">FAQ</a>
-    <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+    <a href="../dashboard.html">Open live dashboard</a>
+    <a href="../app.html#login">Log in</a>
+    <a href="#waitlist">Join the waitlist</a>
+    <a class="btn btn-primary" href="../app.html#signup">Get started</a>
   </div>
 </header>
 <main id="main" class="fpage" data-feature="signals-alerts">
@@ -99,25 +103,25 @@
       <p class="lede reveal d2">Set alerts the way traders do: MRR crosses above a level, churn breaks out above 3%, a plan drops 10% in a week, a big account downgrades. Glimify watches every second and pings you the moment a signal fires.</p>
       <div class="hero-ctas reveal d3"><a class="btn btn-primary" href="#waitlist">Get early access <svg><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="../features.html">All features</a></div>
       <div class="stage fstage">
-        <div class="window" role="img" aria-label="Product preview of Signals &amp; price alerts with example data for a fictional SaaS company.">
+        <div class="window" role="img" aria-label="Product preview of Signals &amp; price alerts (illustration, no sample figures).">
           <div class="window-inner">
-            <div class="window-bar"><div class="lights"><i></i><i></i><i></i></div><div class="url"><svg><use href="#i-lock"/></svg>admin.glimify.app/signals-alerts</div><span class="preview-flag">Product preview · example data</span></div>
+            <div class="window-bar"><div class="lights"><i></i><i></i><i></i></div><div class="url"><svg><use href="#i-lock"/></svg>admin.glimify.app/signals-alerts</div><span class="preview-flag">Preview · no sample data</span></div>
             <div class="fx" aria-hidden="true">
 <div class="fx-pad fx-cols">
   <div class="card fx-span2"><div class="card-label"><span>MRR · 30 days · alert levels</span><span class="tag">Example</span></div>
-    <svg class="mk-candles sm" data-mk-candles="30" data-seed="5" data-levels="1" viewBox="0 0 600 220" preserveAspectRatio="none"></svg>
+    <svg class="mk-candles sm" data-mk-candles="30" data-levels="1" viewBox="0 0 600 220" preserveAspectRatio="none"></svg>
   </div>
-  <div class="card fx-span2"><div class="card-label"><span>Active signals</span><span class="muted mono" style="font-size:11px">4 rules</span></div>
+  <div class="card fx-span2"><div class="card-label"><span>Active signals</span><span class="muted mono" style="font-size:11px">— rules</span></div>
     <ul class="mk-rules">
-      <li><span class="sw on"></span><div><b>MRR crosses above $8,500</b><small>Push + email</small></div><em class="mk-armed">armed</em></li>
-      <li><span class="sw on"></span><div><b>Churn (30d) breaks above 3%</b><small>Chat webhook</small></div><em class="mk-armed">armed</em></li>
-      <li><span class="sw on"></span><div><b>Starter plan −10% in 7 days</b><small>Email</small></div><em class="mk-fired" data-mk-fired>fired</em></li>
-      <li><span class="sw"></span><div><b>Single downgrade &gt; $200 MRR</b><small>Push</small></div><em>paused</em></li>
+      <li><span class="sw on"></span><div><b>MRR crosses above —</b><small>Push + email</small></div><em class="mk-armed">armed</em></li>
+      <li><span class="sw on"></span><div><b>Churn (30d) breaks above —</b><small>Chat webhook</small></div><em class="mk-armed">armed</em></li>
+      <li><span class="sw on"></span><div><b>Starter plan — in 7 days</b><small>Email</small></div><em class="mk-fired" data-mk-fired>fired</em></li>
+      <li><span class="sw"></span><div><b>Single downgrade &gt; — MRR</b><small>Push</small></div><em>paused</em></li>
     </ul>
   </div>
-  <div class="card fx-span4 mk-toast" data-mk-toast><svg><use href="#i-bolt"/></svg><div><b>Signal fired · Starter plan −10.4% in 7 days</b><small>Driven by 6 downgrades to Free after the onboarding change on Tuesday · example</small></div><span class="fx-co-btn sm">Open chart</span></div>
+  <div class="card fx-span4 mk-toast" data-mk-toast><svg><use href="#i-bolt"/></svg><div><b>Signal fired · Starter plan — in 7 days</b><small>Driven by — downgrades to Free after the onboarding change on Tuesday</small></div><span class="fx-co-btn sm">Open chart</span></div>
 </div></div>
-            <div class="example-note fx-note">Product preview · example data for a fictional SaaS. Signals &amp; price alerts is in development — not live yet.</div>
+            <div class="example-note fx-note">Illustration only — no sample figures. Signals &amp; price alerts is in development; your own live numbers appear here once it ships.</div>
           </div>
         </div>
       </div>
@@ -197,7 +201,7 @@
     <div class="footer-word" aria-hidden="true">Glimify</div>
     <div class="footer-base">
       <span>© <span data-year>2026</span> Glimify. Pre-launch — product in development.</span>
-      <span>Every feature on this site is upcoming. Product previews use example data for a fictional company.</span>
+      <span>Product previews show layouts only — no sample or demo data.</span>
     </div>
   </div>
 </footer>

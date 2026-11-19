@@ -79,15 +79,19 @@
       </ul>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-ghost btn-sm" href="../features.html">All features</a>
-      <a class="btn btn-primary btn-sm" href="#waitlist">Join the waitlist</a>
+      <a class="btn btn-ghost btn-sm" href="../dashboard.html"><span class="dot"></span>Live dashboard</a>
+      <a class="btn btn-ghost btn-sm" href="../app.html#login">Log in</a>
+      <a class="btn btn-primary btn-sm" href="../app.html#signup">Get started</a>
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span></button>
     </div>
   </div>
   <div class="mobile-menu" id="mobile-menu">
     <a href="../features.html">Features</a>
     <a href="../index.html#markets">Markets</a><a href="../index.html#platform">Platform</a><a href="../index.html#how">How it works</a><a href="../index.html#pricing">Pricing</a><a href="../index.html#faq">FAQ</a>
-    <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+    <a href="../dashboard.html">Open live dashboard</a>
+    <a href="../app.html#login">Log in</a>
+    <a href="#waitlist">Join the waitlist</a>
+    <a class="btn btn-primary" href="../app.html#signup">Get started</a>
   </div>
 </header>
 <main id="main" class="fpage" data-feature="live-pulse">
@@ -99,30 +103,26 @@
       <p class="lede reveal d2">The Live pulse is the home screen of Glimify: who is on your site right now, who is in checkout, and what it is doing to MRR — updated second by second, not in tomorrow&#x27;s report.</p>
       <div class="hero-ctas reveal d3"><a class="btn btn-primary" href="#waitlist">Get early access <svg><use href="#i-arrow"/></svg></a><a class="btn btn-ghost" href="../features.html">All features</a></div>
       <div class="stage fstage">
-        <div class="window" role="img" aria-label="Product preview of Live pulse dashboard with example data for a fictional SaaS company.">
+        <div class="window" role="img" aria-label="Product preview of Live pulse dashboard (illustration, no sample figures).">
           <div class="window-inner">
-            <div class="window-bar"><div class="lights"><i></i><i></i><i></i></div><div class="url"><svg><use href="#i-lock"/></svg>admin.glimify.app/live-pulse</div><span class="preview-flag">Product preview · example data</span></div>
+            <div class="window-bar"><div class="lights"><i></i><i></i><i></i></div><div class="url"><svg><use href="#i-lock"/></svg>admin.glimify.app/live-pulse</div><span class="preview-flag">Preview · no sample data</span></div>
             <div class="fx" aria-hidden="true">
 <div class="main fx-main">
-  <div class="main-head"><div><h4>Live pulse</h4><p>Acme Cloud · example workspace</p></div><div class="seg"><span class="on">Live</span><span>Today</span><span>7d</span></div></div>
-  <div class="card k k-live"><div class="card-label"><span class="l"><span class="dot"></span>Live visitors</span><span class="tag tag-pulse">Live</span></div><div class="metric" data-live>42</div><div class="delta">↑ 12% vs last hour</div></div>
-  <div class="card k"><div class="card-label"><span>In checkout now</span></div><div class="metric" data-fx-tick="3,11,1">6</div><div class="delta">Pro plan most picked</div></div>
-  <div class="card k"><div class="card-label"><span>MRR</span></div><div class="metric" data-fx-tick="8380,8520,8" data-prefix="$">$8,420</div><div class="delta">↑ 6.4% this month</div><svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none"><path d="M0 28 L15 26 L30 27 L45 21 L60 22 L75 16 L90 14 L105 9 L120 5" fill="none" stroke="#5cf5b0" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-  <div class="card k"><div class="card-label"><span>Trials today</span></div><div class="metric" data-fx-tick="21,27,1">23</div><div class="delta">↑ 9% vs yesterday</div></div>
+  <div class="main-head"><div><h4>Live pulse</h4><p>Your SaaS · your workspace</p></div><div class="seg"><span class="on">Live</span><span>Today</span><span>7d</span></div></div>
+  <div class="card k k-live"><div class="card-label"><span class="l"><span class="dot"></span>Live visitors</span><span class="tag tag-pulse">Live</span></div><div class="metric">—</div><div class="delta">— vs last hour</div></div>
+  <div class="card k"><div class="card-label"><span>In checkout now</span></div><div class="metric">—</div><div class="delta">Pro plan most picked</div></div>
+  <div class="card k"><div class="card-label"><span>MRR</span></div><div class="metric">—</div><div class="delta">— this month</div><svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none"><path d="M0 30 L120 30" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+  <div class="card k"><div class="card-label"><span>Trials today</span></div><div class="metric">—</div><div class="delta">— vs yesterday</div></div>
   <div class="card pulse-card">
     <div class="card-label"><span class="l">Traffic pulse · last 60 minutes</span><span class="legend"><span><i style="background:#5cf5b0"></i>Visitors</span></span></div>
     <div class="chart"><svg id="pulse-chart" viewBox="0 0 800 210" preserveAspectRatio="none"><defs><linearGradient id="pg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5cf5b0" stop-opacity=".28"/><stop offset="1" stop-color="#5cf5b0" stop-opacity="0"/></linearGradient><linearGradient id="pl" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#5cf5b0" stop-opacity=".2"/><stop offset=".35" stop-color="#5cf5b0"/><stop offset="1" stop-color="#bfffe0"/></linearGradient></defs><g stroke="rgba(255,255,255,.05)"><line x1="0" x2="800" y1="52" y2="52"/><line x1="0" x2="800" y1="105" y2="105"/><line x1="0" x2="800" y1="157" y2="157"/></g><path class="area" fill="url(#pg)"/><path class="line" fill="none" stroke="url(#pl)" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/><circle class="halo" r="10" fill="rgba(92,245,176,.18)"/><circle class="head" r="4" fill="#5cf5b0"/></svg></div>
     <div class="chart-axis"><span>−60m</span><span>−45m</span><span>−30m</span><span>−15m</span><span>now</span></div>
   </div>
   <div class="card feed-card fx-feed-card"><div class="card-label"><span class="l"><span class="dot"></span>Live events</span></div>
-    <ul class="feed">
-      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#5cf5b0" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="t">Trial converted<small>Pro · monthly · just now</small></span><span class="a">+$49</span></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#5cf5b0" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span><span class="t">Seats added<small>Team · +3 seats · 2m ago</small></span><span class="a">+$36</span></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#8fb8ff" stroke-width="2" stroke-linecap="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></span><span class="t">Trial started<small>Team · 14 days · 4m ago</small></span><span class="a dim">trial</span></li>
-    </ul>
+    <ul class="feed"><li class="nz-empty"><span class="t">Nothing here yet<small>Your real events stream in once your product is connected</small></span></li></ul>
   </div>
 </div></div>
-            <div class="example-note fx-note">Product preview · example data for a fictional SaaS. Live pulse dashboard is in development — not live yet.</div>
+            <div class="example-note fx-note">Illustration only — no sample figures. Live pulse dashboard is in development; your own live numbers appear here once it ships.</div>
           </div>
         </div>
       </div>
@@ -202,7 +202,7 @@
     <div class="footer-word" aria-hidden="true">Glimify</div>
     <div class="footer-base">
       <span>© <span data-year>2026</span> Glimify. Pre-launch — product in development.</span>
-      <span>Every feature on this site is upcoming. Product previews use example data for a fictional company.</span>
+      <span>Product previews show layouts only — no sample or demo data.</span>
     </div>
   </div>
 </footer>
