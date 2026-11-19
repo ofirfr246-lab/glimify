@@ -47,5 +47,5 @@ Only use the public anon/publishable key here — never a service-role or secret
 - `features.html` (hub) and `features/<slug>.html` (16 pages) are **generated**.
   Edit copy in `scripts/features_data.py`, mock UIs in `scripts/feature_mocks.py`, then run:
   `python3 scripts/build_features.py` (also refreshes the index nav/feature-grid links and `sitemap.xml`).
-- Styles: `assets/css/features.css` · scripts: `assets/js/features.js` (hub filter + example-data mock animations).
+- Styles: `assets/css/features.css` · scripts: `assets/js/features.js` (hub filter + preview animations; no sample data).
 - `scripts/set_domain.py` now also rewrites `features/*.html`.
