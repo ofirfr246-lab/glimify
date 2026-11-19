@@ -6,8 +6,8 @@
 (function () {
   try {
     var SITE = "glimify";
-    var URL_ = "https://izcqyzrzjtogsfrffknp.supabase.co/rest/v1/site_pageviews";
-    var KEY = "sb_publishable_Q4JbiEEDoJzbcBJsmsq6rA_7I-_dkI2";
+    var URL_ = "https://ksjafkgxvzgfrluzjdzt.supabase.co/rest/v1/site_pageviews";
+    var KEY = "sb_publishable_YBG2tpGS8qH2K-AI-u9R8A_Z2L1aFyr";
     if (navigator.doNotTrack === "1" || window.doNotTrack === "1" || navigator.globalPrivacyControl) return;
     if (/^(localhost|127\.|0\.0\.0\.0)/.test(location.hostname)) return;
     if (navigator.webdriver) return;

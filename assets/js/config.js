@@ -9,16 +9,16 @@ window.GLIMIFY_CONFIG = {
 
   // Waitlist endpoint: Supabase REST, insert-only RLS on glimify_waitlist.
   // Only a PUBLIC (publishable) key is stored here — never a secret key.
-  WAITLIST_ENDPOINT: "https://izcqyzrzjtogsfrffknp.supabase.co/rest/v1/glimify_waitlist",
+  WAITLIST_ENDPOINT: "https://ksjafkgxvzgfrluzjdzt.supabase.co/rest/v1/glimify_waitlist",
   WAITLIST_HEADERS: {
-    apikey: "sb_publishable_Q4JbiEEDoJzbcBJsmsq6rA_7I-_dkI2",
-    Authorization: "Bearer sb_publishable_Q4JbiEEDoJzbcBJsmsq6rA_7I-_dkI2",
+    apikey: "sb_publishable_YBG2tpGS8qH2K-AI-u9R8A_Z2L1aFyr",
+    Authorization: "Bearer sb_publishable_YBG2tpGS8qH2K-AI-u9R8A_Z2L1aFyr",
     Prefer: "return=minimal"
   }
 };
 
 /* Private live dashboard (dashboard.html). Uses the same PUBLIC publishable key.
    Data is protected server-side: public.glimify_dashboard_stats() only answers
-   for accounts listed in public.glimify_admins. */
-window.GLIMIFY_CONFIG.SUPABASE_URL = "https://izcqyzrzjtogsfrffknp.supabase.co";
-window.GLIMIFY_CONFIG.SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Q4JbiEEDoJzbcBJsmsq6rA_7I-_dkI2";
+   for accounts listed in public.glimify_admins (Glimify's own Supabase project). */
+window.GLIMIFY_CONFIG.SUPABASE_URL = "https://ksjafkgxvzgfrluzjdzt.supabase.co";
+window.GLIMIFY_CONFIG.SUPABASE_PUBLISHABLE_KEY = "sb_publishable_YBG2tpGS8qH2K-AI-u9R8A_Z2L1aFyr";

@@ -38,10 +38,10 @@
   /* ---------- Footer year ---------- */
   document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
-  /* ---------- Dashboard preview (all EXAMPLE data) ---------- */
-  var fmt = function (n) { return n.toLocaleString("en-US"); };
+  /* ---------- Live preview: real Glimify site traffic (aggregates only, no sample data) ---------- */
+  var fmt = function (n) { return Number(n || 0).toLocaleString("en-US"); };
 
-  // Funnel bars
+  // Funnel bars (widths come from markup; previews carry no sample figures)
   var funnelSet = function () {
     document.querySelectorAll(".f-bar span[data-w]").forEach(function (s) { s.style.width = s.getAttribute("data-w") + "%"; });
   };
@@ -52,95 +52,61 @@
     if (win.classList.contains("in")) funnelSet();
   }
 
-  // Pulse chart
   var chart = document.getElementById("pulse-chart");
-  var series = [];
-  var N = 48;
-  var seed = 7;
-  var rnd = function () { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
-  var base = 38;
-  for (var i = 0; i < N; i++) {
-    base += (rnd() - 0.48) * 6; base = Math.max(18, Math.min(62, base));
-    series.push(base + (i % 11 === 6 ? 14 : 0));
-  }
   var W = 800, H = 210;
-  var draw = function () {
+  var drawPulse = function (series) {
     if (!chart) return;
-    var max = 80, min = 0;
-    var pts = series.map(function (v, i) { return [i * (W / (N - 1)), H - ((v - min) / (max - min)) * H]; });
+    var line = chart.querySelector(".line"), area = chart.querySelector(".area");
+    if (!line || !area) return;
+    if (!series || !series.length) series = [0, 0];
+    var max = Math.max(4, Math.max.apply(null, series) * 1.25), n = series.length;
+    var pts = series.map(function (v, i) { return [i * (W / (n - 1)), H - 6 - (v / max) * (H - 16)]; });
     var d = "M" + pts[0][0] + "," + pts[0][1];
     for (var j = 1; j < pts.length; j++) {
       var p0 = pts[j - 1], p1 = pts[j], cx = (p0[0] + p1[0]) / 2;
       d += " C" + cx + "," + p0[1] + " " + cx + "," + p1[1] + " " + p1[0] + "," + p1[1];
     }
-    chart.querySelector(".line").setAttribute("d", d);
-    chart.querySelector(".area").setAttribute("d", d + " L" + W + "," + H + " L0," + H + " Z");
-    var last = pts[pts.length - 1];
-    var head = chart.querySelector(".head"), halo = chart.querySelector(".halo");
-    head.setAttribute("cx", last[0]); head.setAttribute("cy", last[1]);
-    halo.setAttribute("cx", last[0]); halo.setAttribute("cy", last[1]);
+    line.setAttribute("d", d);
+    area.setAttribute("d", d + " L" + W + "," + H + " L0," + H + " Z");
+    var last = pts[pts.length - 1], head = chart.querySelector(".head"), halo = chart.querySelector(".halo");
+    if (head) { head.setAttribute("cx", last[0]); head.setAttribute("cy", last[1]); }
+    if (halo) { halo.setAttribute("cx", last[0]); halo.setAttribute("cy", last[1]); }
   };
-  draw();
+  drawPulse(null);
 
-  // Live counter
-  var liveEl = document.querySelector("[data-live]");
-  var live = liveEl ? parseInt(liveEl.textContent, 10) : 42;
-  var todayEl = document.querySelector("[data-today]");
-  var today = todayEl ? parseInt(todayEl.textContent.replace(/,/g, ""), 10) : 1284;
-  document.querySelectorAll("[data-live-mirror]").forEach(function (el) { el.textContent = live; });
-
-  // Event feed
-  var feed = document.querySelector(".feed");
-  var icons = {
-    trial: '<svg viewBox="0 0 24 24" fill="none" stroke="#8fb8ff" stroke-width="2" stroke-linecap="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>',
-    paid: '<svg viewBox="0 0 24 24" fill="none" stroke="#5cf5b0" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>',
-    up: '<svg viewBox="0 0 24 24" fill="none" stroke="#5cf5b0" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>',
-    churn: '<svg viewBox="0 0 24 24" fill="none" stroke="#ff7a85" stroke-width="2" stroke-linecap="round"><path d="M17 7 7 17M16 17H7V8"/></svg>',
-    view: '<svg viewBox="0 0 24 24" fill="none" stroke="#b5bac1" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>'
+  var ago = function (iso) {
+    var s = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 1000));
+    return s < 60 ? "just now" : Math.round(s / 60) + "m ago";
   };
-  var pool = [
-    ["paid", "New subscription", "Pro · monthly", "+$49", ""],
-    ["view", "Viewing pricing", "Visitor from search", "live", "dim"],
-    ["trial", "Trial started", "Team · 14 days", "trial", "dim"],
-    ["up", "Upgrade", "Starter → Pro", "+$30", ""],
-    ["paid", "Renewal", "Team · yearly", "+$990", ""],
-    ["view", "Checkout opened", "Pro · yearly", "live", "dim"],
-    ["churn", "Cancellation", "Starter · monthly", "−$19", "neg"],
-    ["paid", "Trial converted", "Pro · monthly", "+$49", ""]
-  ];
-  var pi = 0;
-  var pushFeed = function () {
-    if (!feed) return;
-    var e = pool[pi++ % pool.length];
-    var li = document.createElement("li"); li.className = "new";
-    li.innerHTML = '<span class="ic">' + icons[e[0]] + '</span><span class="t">' + e[1] + "<small>" + e[2] + ' · just now</small></span><span class="a ' + e[4] + '">' + e[3] + "</span>";
-    feed.insertBefore(li, feed.firstChild);
-    var items = feed.querySelectorAll("li");
-    items.forEach(function (it, idx) {
-      var sm = it.querySelector("small");
-      if (idx > 0 && sm) sm.textContent = sm.textContent.replace(/just now|\d+m ago/, (idx * 2) + "m ago");
-    });
-    while (feed.children.length > 4) feed.removeChild(feed.lastChild);
-  };
-
-  if (!reduce && chart) {
-    var visible = true;
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(chart);
+  var esc = function (t) { return String(t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var VIEW_IC = '<svg viewBox="0 0 24 24" fill="none" stroke="#b5bac1" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
+  var render = function (p) {
+    var now = document.querySelector("[data-live]"), today = document.querySelector("[data-today]"), views = document.querySelector("[data-views]");
+    if (now) now.textContent = fmt(p.visitors_now);
+    document.querySelectorAll("[data-live-mirror]").forEach(function (el) { el.textContent = fmt(p.visitors_now); });
+    if (today) today.textContent = fmt(p.visitors_24h);
+    if (views) views.textContent = fmt(p.pageviews_24h) + " page views · glimify site";
+    drawPulse(p.pulse_60m);
+    var feed = document.querySelector("[data-live-feed]");
+    if (feed && p.recent && p.recent.length) {
+      feed.innerHTML = p.recent.map(function (r) {
+        var path = String(r.path || "/").replace(/^\/glimify/, "") || "/";
+        return '<li><span class="ic">' + VIEW_IC + '</span><span class="t">Page view<small>' + esc(path) + " · " + ago(r.at) + '</small></span><span class="a dim">live</span></li>';
+      }).join("");
     }
-    setInterval(function () {
-      if (!visible || document.hidden) return;
-      var last = series[series.length - 1];
-      var next = last + (Math.random() - 0.5) * 9;
-      if (Math.random() < 0.12) next += 12;
-      next = Math.max(20, Math.min(66, next));
-      series.shift(); series.push(next); draw();
-      live = Math.max(28, Math.min(64, live + Math.round((Math.random() - 0.5) * 4)));
-      if (liveEl) liveEl.textContent = live;
-      document.querySelectorAll("[data-live-mirror]").forEach(function (el) { el.textContent = live; });
-      if (Math.random() < 0.6) { today += 1 + Math.floor(Math.random() * 3); if (todayEl) todayEl.textContent = fmt(today); }
-    }, 1400);
-    setInterval(function () { if (visible && !document.hidden) pushFeed(); }, 3800);
+  };
+  var pulseUrl = CFG.SUPABASE_URL && CFG.SUPABASE_PUBLISHABLE_KEY ? CFG.SUPABASE_URL + "/rest/v1/rpc/glimify_site_pulse" : null;
+  var fetchPulse = function () {
+    if (!pulseUrl || document.hidden) return;
+    fetch(pulseUrl, { method: "POST", headers: { apikey: CFG.SUPABASE_PUBLISHABLE_KEY, Authorization: "Bearer " + CFG.SUPABASE_PUBLISHABLE_KEY, "Content-Type": "application/json" }, body: "{}" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (p) { if (p) render(p); })
+      .catch(function () {});
+  };
+  if (pulseUrl && document.querySelector("[data-live-feed]")) {
+    fetchPulse();
+    setInterval(fetchPulse, 20000);
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) fetchPulse(); });
   }
 
   /* ---------- Waitlist ---------- */

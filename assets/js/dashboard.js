@@ -1,5 +1,5 @@
-/* Glimify private live dashboard — real MarketScope data only.
-   Auth: Supabase Auth (Google or email/password, same accounts as MarketScope).
+/* Glimify private live dashboard — real Glimify platform data only (Glimify's own Supabase project).
+   Auth: Supabase Auth (Google or email/password, Glimify accounts).
    Data: RPC public.glimify_dashboard_stats() — runs server-side and only answers for
    accounts in public.glimify_admins. No secret keys here. Nothing on this page is invented:
    every number comes from that RPC; missing data shows as 0 / "No data yet". */
@@ -18,16 +18,16 @@ try { var sr = localStorage.getItem("glimify-dash-range"); if (/^(today|7d|30d)$
 var METRICS = [
   { k: "visitors", label: "Sessions", title: "Sessions over time", route: "visitors" },
   { k: "pageviews", label: "Page views", title: "Page views over time", route: "visitors" },
-  { k: "lead_total", label: "Leads", title: "Leads over time (new accounts + form leads)", route: "leads" },
-  { k: "waitlist", label: "Waitlist joins", title: "Waitlist joins over time", route: "waitlist" },
-  { k: "reports", label: "Reports run", title: "Reports over time", route: "reports" }
+  { k: "lead_total", label: "Leads", title: "Leads over time (new accounts + waitlist joins)", route: "leads" },
+  { k: "products", label: "Products created", title: "Products created over time", route: "products" },
+  { k: "subs", label: "Subscriptions added", title: "Subscriptions added over time", route: "products" }
 ];
 var MBY = {}; METRICS.concat([
   { k: "signups", label: "New accounts", title: "New accounts over time", route: "customers" },
-  { k: "leads", label: "Form leads", title: "Form leads over time", route: "leads" }
+  { k: "waitlist", label: "Waitlist joins", title: "Waitlist joins over time", route: "waitlist" }
 ]).forEach(function (m) { MBY[m.k] = m; });
-var ROUTES = ["home", "analytics", "visitors", "customers", "leads", "waitlist", "reports", "settings"];
-var TITLES = { home: "Home", analytics: "Analytics", visitors: "Visitors", customers: "Customers", leads: "Leads", waitlist: "Waitlist", reports: "Reports", settings: "Settings" };
+var ROUTES = ["home", "analytics", "visitors", "customers", "leads", "waitlist", "products", "settings"];
+var TITLES = { home: "Home", analytics: "Analytics", visitors: "Visitors", customers: "Accounts", leads: "Leads", waitlist: "Waitlist", products: "Products", settings: "Settings" };
 
 /* ---------- utils ---------- */
 function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -191,19 +191,20 @@ function table(rows, heads, cells, empty, limit) {
 function badge(text, ok) { return '<span class="badge' + (ok ? " ok" : "") + '">' + esc(text) + "</span>"; }
 function signupCells(x) {
   var active = x.last_sign_in_at && Date.now() - new Date(x.last_sign_in_at).getTime() < 7 * 864e5;
-  var plan = x.plan || "none";
-  return ['<td class="em">' + esc(x.email || "—") + "</td>", "<td>" + '<span class="badge plain' + (plan !== "free" && plan !== "none" ? " ok" : "") + '">' + esc(cap(plan)) + "</span></td>",
-    "<td>" + esc(cap(x.provider || "—")) + "</td>", '<td title="' + esc(fmtDate(x.created_at, true)) + '">' + esc(fmtDate(x.created_at, true)) + "</td>", "<td>" + badge(active ? "Active" : "Inactive", active) + "</td>"];
+  var np = Number(x.products) || 0;
+  return ['<td class="em">' + esc(x.email || "—") + "</td>", '<td class="num">' + (np ? badge(num(np), true) : '<span class="muted">0</span>') + "</td>",
+    "<td>" + esc(cap(x.provider || "—")) + "</td>", "<td>" + esc(fmtDate(x.created_at, true)) + "</td>", "<td>" + badge(active ? "Active" : "Inactive", active) + "</td>"];
 }
-var SIGNUP_HEADS = ["Customer", "Plan", "Sign-in", "Joined", "Status"];
-function leadCells(x) { return ['<td class="em">' + esc(x.email || "—") + "</td>", "<td>" + (x.source ? badge(x.source) : "—") + "</td>", "<td>" + esc(x.page || "—") + "</td>", "<td>" + esc(fmtDate(x.created_at, true)) + "</td>"]; }
+var SIGNUP_HEADS = ["Account", "#Products", "Sign-in", "Joined", "Status"];
 function waitCells(x) { return ['<td class="em">' + esc(x.email || "—") + "</td>", "<td>" + (x.stage ? badge(x.stage) : "—") + "</td>", "<td>" + esc(x.source || "—") + "</td>", "<td>" + esc(fmtDate(x.created_at, true)) + "</td>"]; }
-function reportCells(x) { return ["<td>" + esc(x.product || "—") + "</td>", "<td>" + esc(x.market || "—") + "</td>", "<td>" + esc(x.verdict || "—") + "</td>", "<td>" + (x.status ? badge(x.status, x.status === "done" || x.status === "complete" || x.status === "completed") : "—") + "</td>", "<td>" + esc(fmtDate(x.created_at, true)) + "</td>"]; }
 function usageList(d) {
-  var e = d.engagement || {}, b = d.billing || {};
-  return '<div class="kv">' + [["Watchlist items", e.watchlist], ["Portfolio positions", e.portfolio], ["Tracked stores", e.tracked_stores], ["Stripe fulfillments", b.fulfillments], ["Stripe live events", b.live_events]]
-    .map(function (r) { return "<div><span>" + esc(r[0]) + "</span><b>" + num(r[1]) + "</b></div>"; }).join("") + "</div>";
+  var p = d.platform || {}, m = p.mrr_by_currency || {};
+  var mrr = Object.keys(m).length ? Object.keys(m).map(function (c) { try { return new Intl.NumberFormat("en-US", { style: "currency", currency: c }).format(m[c]); } catch (e) { return c + " " + num(m[c]); } }).join(" · ") : "—";
+  return '<div class="kv">' + [["Products", num(p.products)], ["Published pricing pages", num(p.published_pricing)], ["Plans", num(p.plans)], ["Customers tracked", num(p.customers)], ["Active subscriptions", num(p.active_subscriptions)], ["Subscription events", num(p.events)], ["Tracked MRR", mrr]]
+    .map(function (r) { return "<div><span>" + esc(r[0]) + "</span><b>" + esc(r[1]) + "</b></div>"; }).join("") + "</div>";
 }
+function productCells(x) { return ["<td>" + esc(x.name || "—") + "</td>", "<td>" + esc(x.currency || "—") + "</td>", '<td class="num">' + num(x.plans) + '</td><td class="num">' + num(x.active_subs) + "</td>", "<td>" + badge(x.pricing_published ? "Published" : "Draft", x.pricing_published) + "</td>", "<td>" + esc(fmtDate(x.created_at, true)) + "</td>"]; }
+var PRODUCT_HEADS = ["Product", "Currency", "#Plans", "#Active subs", "Pricing page", "Created"];
 function stat(label, val, sub) { return '<div class="card stat"><span class="m-label">' + esc(label) + '</span><div class="m-row"><span class="m-val">' + val + "</span></div>" + (sub ? '<div class="s-sub">' + sub + "</div>" : "") + "</div>"; }
 function rangeStat(label, k) { var s = series(k), t = sum(s.cur), ch = change(t, s.prevSame); return stat(label, num(t), '<span class="chg ' + ch.cls + '">' + ch.html + "</span> " + esc(s.curLabel.toLowerCase())); }
 function head(title, sub) { return '<div class="page-head"><div><h1>' + esc(title) + "</h1>" + (sub ? "<p>" + sub + "</p>" : "") + "</div></div>"; }
@@ -212,23 +213,22 @@ function liveBanner(d) {
   if (v.tracking_since) {
     return '<div class="card live-banner"><span class="big"><span class="dot"></span>' + num(v.right_now) + " visitor" + (Number(v.right_now) === 1 ? "" : "s") + ' right now</span><span class="muted">Active sessions in the last 5 minutes · ' + num(v.visitors_24h) + " sessions in 24h · tracking since " + esc(fmtDate(v.tracking_since)) + "</span></div>";
   }
-  return '<div class="card live-banner"><span class="live-pill"><span class="dot"></span>Live</span><span class="muted">Connected to MarketScope. Visitor tracking is installed and will show real visits as they happen — no visits recorded yet.</span></div>';
+  return '<div class="card live-banner"><span class="live-pill"><span class="dot"></span>Live</span><span class="muted">Connected to Glimify. Visitor tracking is installed and will show real visits as they happen — no visits recorded yet.</span></div>';
 }
 
 /* ---------- views ---------- */
 var VIEWS = {
   home: function (d) {
     var u = d.users || {};
-    return head("Home", "Real MarketScope data · " + esc(compareText().toLowerCase())) +
+    return head("Home", "Live Glimify data · " + esc(compareText().toLowerCase())) +
       '<div class="stack">' + liveBanner(d) + metricStrip() + chartCard(state.metric, { h: 260, link: true }) +
       '<div class="grid g2">' +
-      card("Top plans", barList(entries(u.plans).map(function (p) { return [cap(p[0]), p[1]]; }), "No customer profiles yet"), { sub: num(u.total) + " customers" }) +
-      card("Sign-in methods", barList(entries(u.providers).map(function (p) { return [cap(p[0]), p[1]]; }), "No customers yet")) +
+      card("Platform", usageList(d), { sub: num(u.total) + " accounts" }) +
+      card("Sign-in methods", barList(entries(u.providers).map(function (p) { return [cap(p[0]), p[1]]; }), "No accounts yet")) +
       card("Recent leads · new accounts", table(d.recent_signups, SIGNUP_HEADS, signupCells, "No new accounts yet", 6), { cls: "span2", link: "customers" }) +
-      card("Recent leads · forms", table(d.recent_leads, ["Lead", "Source", "Page", "Date"], leadCells, "No form leads yet", 5), { link: "leads" }) +
       card("Waitlist", table(d.recent_waitlist, ["Email", "Stage", "Source", "Date"], waitCells, "No one on the Glimify waitlist yet", 5), { link: "waitlist" }) +
-      card("Top pages · 30 days", barList(((d.visitors || {}).top_pages_30d || []).map(function (p) { return [p.site + " " + p.path, p.views]; }), trackingEmpty())) +
-      card("Product usage", usageList(d)) +
+      card("Top pages · 30 days", barList(((d.visitors || {}).top_pages_30d || []).map(function (p) { return [p.path, p.views]; }), trackingEmpty())) +
+      card("Recent products", table(d.recent_products, PRODUCT_HEADS, productCells, "No products yet", 5), { link: "products" }) +
       "</div></div>";
   },
   analytics: function (d) {
@@ -236,7 +236,7 @@ var VIEWS = {
     return head("Analytics", "One chart per metric · " + esc(compareText().toLowerCase())) +
       '<div class="grid g2">' + METRICS.map(function (m) { return chartCard(m.k, { h: 170, link: true }); }).join("") +
       cumulativeCard(d) +
-      card("Customers by plan", barList(entries(u.plans).map(function (p) { return [cap(p[0]), p[1]]; }), "No customer profiles yet")) +
+      card("Sign-in methods", barList(entries(u.providers).map(function (p) { return [cap(p[0]), p[1]]; }), "No accounts yet")) +
       "</div>";
   },
   visitors: function (d) {
@@ -244,27 +244,27 @@ var VIEWS = {
     return head("Visitors", v.tracking_since ? "Tracking since " + esc(fmtDate(v.tracking_since, true)) + " · anonymous, no IPs or personal data" : "Tracking just started · anonymous, no IPs or personal data") +
       '<div class="stack"><div class="stat-row">' +
       stat("Visitors right now", num(v.right_now), "sessions in the last 5 min") + rangeStat("Sessions", "visitors") + rangeStat("Page views", "pageviews") + stat("All-time page views", num(v.pageviews_total), "since tracking began") +
-      "</div>" + chartCard("visitors") + chartCard("pageviews") + '<div class="grid g3">' +
-      card("Top pages · 30 days", barList((v.top_pages_30d || []).map(function (p) { return [p.site + " " + p.path, p.views]; }), trackingEmpty())) +
+      "</div>" + chartCard("visitors") + chartCard("pageviews") + '<div class="grid g2">' +
+      card("Top pages · 30 days", barList((v.top_pages_30d || []).map(function (p) { return [p.path, p.views]; }), trackingEmpty())) +
       card("Top referrers · 30 days", barList((v.top_referrers_30d || []).map(function (p) { return [p.referrer, p.views]; }), trackingEmpty())) +
-      card("By site · 30 days", barList(entries(v.by_site_30d).map(function (p) { return [cap(p[0]), p[1]]; }), trackingEmpty())) +
       "</div></div>";
   },
   customers: function (d) {
     var u = d.users || {};
-    return head("Customers", "MarketScope accounts · emails masked") +
-      '<div class="stack"><div class="stat-row">' + stat("Total customers", num(u.total), "all time") + rangeStat("New customers", "signups") +
-      stat("Active · 7 days", num(u.active_7d), "signed in recently") + stat("Paid", num(u.paid), num(u.total ? Math.round((u.paid / u.total) * 100) : 0) + "% of customers") + "</div>" +
+    return head("Accounts", "Glimify accounts · emails masked") +
+      '<div class="stack"><div class="stat-row">' + stat("Total accounts", num(u.total), "all time") + rangeStat("New accounts", "signups") +
+      stat("Active · 7 days", num(u.active_7d), "signed in recently") + stat("With a product", num(u.with_product), num(u.total ? Math.round((u.with_product / u.total) * 100) : 0) + "% of accounts") + "</div>" +
       '<div class="grid g2">' + chartCard("signups", { h: 200 }) + cumulativeCard(d) + "</div>" +
-      card("All recent customers", table(d.recent_signups, SIGNUP_HEADS, signupCells, "No customers yet"), { sub: "latest 25" }) + "</div>";
+      card("All recent accounts", table(d.recent_signups, SIGNUP_HEADS, signupCells, "No accounts yet"), { sub: "latest 25" }) + "</div>";
   },
   leads: function (d) {
-    var l = d.leads || {};
-    return head("Leads", "New MarketScope accounts + contact / lead form submissions") +
-      '<div class="stack"><div class="stat-row">' + stat("Total leads", num((Number(l.total) || 0) + (Number((d.users || {}).total) || 0)), num(l.total) + " form · " + num((d.users || {}).total) + " accounts") + rangeStat("New leads", "lead_total") + stat("Last 24 hours", num(l.last_24h)) + stat("Last 7 days", num(l.last_7d)) + "</div>" +
-      chartCard("lead_total", { h: 220 }) + '<div class="grid g2">' + chartCard("leads", { h: 200 }) + card("Leads by source", barList(entries(l.by_source), "No leads yet")) + "</div>" +
-      card("Recent form leads", table(d.recent_leads, ["Lead", "Source", "Page", "Date"], leadCells, "No form leads yet"), { sub: "latest 25" }) +
-      card("Recent new accounts", table(d.recent_signups, SIGNUP_HEADS, signupCells, "No new accounts yet"), { sub: "latest 25" }) + "</div>";
+    var u = d.users || {}, w = d.waitlist || {};
+    return head("Leads", "New Glimify accounts + waitlist joins") +
+      '<div class="stack"><div class="stat-row">' + stat("Total leads", num((Number(u.total) || 0) + (Number(w.total) || 0)), num(u.total) + " accounts · " + num(w.total) + " waitlist") + rangeStat("New leads", "lead_total") +
+      stat("Last 24 hours", num((Number(u.last_24h) || 0) + (Number(w.last_24h) || 0))) + stat("Last 7 days", num((Number(u.last_7d) || 0) + (Number(w.last_7d) || 0))) + "</div>" +
+      chartCard("lead_total", { h: 220 }) + '<div class="grid g2">' + chartCard("signups", { h: 200 }) + chartCard("waitlist", { h: 200 }) + "</div>" +
+      card("Recent new accounts", table(d.recent_signups, SIGNUP_HEADS, signupCells, "No new accounts yet"), { sub: "latest 25" }) +
+      card("Recent waitlist joins", table(d.recent_waitlist, ["Email", "Stage", "Source", "Date"], waitCells, "No one on the waitlist yet"), { sub: "latest 25" }) + "</div>";
   },
   waitlist: function (d) {
     var w = d.waitlist || {};
@@ -273,13 +273,13 @@ var VIEWS = {
       '<div class="grid g2">' + chartCard("waitlist", { h: 200 }) + card("By stage", barList(entries(w.by_stage).map(function (p) { return [cap(p[0]), p[1]]; }), "No one on the waitlist yet")) + "</div>" +
       card("Recent joins", table(d.recent_waitlist, ["Email", "Stage", "Source", "Date"], waitCells, "No one on the waitlist yet"), { sub: "latest 25" }) + "</div>";
   },
-  reports: function (d) {
-    var r = d.reports || {};
-    return head("Reports", "MarketScope market reports (examples excluded)") +
-      '<div class="stack"><div class="stat-row">' + stat("Total reports", num(r.total), "all time") + rangeStat("Reports run", "reports") + stat("Last 7 days", num(r.last_7d)) + stat("Watchlist items", num((d.engagement || {}).watchlist)) + "</div>" +
-      '<div class="grid g2">' + chartCard("reports", { h: 200 }) + card("By status", barList(entries(r.by_status).map(function (p) { return [cap(p[0]), p[1]]; }), "No reports yet")) + "</div>" +
-      card("Recent reports", table(d.recent_reports, ["Product", "Market", "Verdict", "Status", "Date"], reportCells, "No reports yet"), { sub: "latest 25" }) +
-      card("Product usage", usageList(d)) + "</div>";
+  products: function (d) {
+    var p = d.platform || {};
+    return head("Products", "SaaS products created in the Glimify app (all accounts)") +
+      '<div class="stack"><div class="stat-row">' + stat("Total products", num(p.products), "all time") + rangeStat("Products created", "products") + stat("Published pricing pages", num(p.published_pricing)) + stat("Active subscriptions", num(p.active_subscriptions), num(p.subscriptions) + " total") + "</div>" +
+      '<div class="grid g2">' + chartCard("products", { h: 200 }) + chartCard("subs", { h: 200 }) + "</div>" +
+      card("Recent products", table(d.recent_products, PRODUCT_HEADS, productCells, "No products yet"), { sub: "latest 25" }) +
+      card("Platform totals", usageList(d)) + "</div>";
   },
   settings: function (d) {
     var v = d.visitors || {};
@@ -287,7 +287,7 @@ var VIEWS = {
     return head("Settings") + '<div class="grid g2">' +
       card("Account", '<div class="kv"><div><span>Signed in as</span><b>' + esc(state.email || "—") + '</b></div><div><span>Access</span><b>Admin</b></div></div><p class="note"><button class="btn" id="btn-logout3">Log out</button></p>') +
       card("Appearance", '<div class="kv"><div><span>Theme</span><b>' + (theme === "light" ? "Light" : "Dark") + '</b></div></div><p class="note"><button class="btn" id="btn-theme2">Switch to ' + (theme === "light" ? "dark" : "light") + "</button></p>") +
-      card("Data", '<div class="kv"><div><span>Source</span><b>MarketScope · Supabase</b></div><div><span>Auto-refresh</span><b>Every 60 seconds</b></div><div><span>Time zone</span><b>' + esc(d.timezone || TZ) + '</b></div><div><span>Last updated</span><b>' + esc(fmtDate(d.generated_at, true)) + "</b></div></div>") +
+      card("Data", '<div class="kv"><div><span>Source</span><b>Glimify · Supabase</b></div><div><span>Auto-refresh</span><b>Every 60 seconds</b></div><div><span>Time zone</span><b>' + esc(d.timezone || TZ) + '</b></div><div><span>Last updated</span><b>' + esc(fmtDate(d.generated_at, true)) + "</b></div></div>") +
       card("Visitor tracking", '<div class="kv"><div><span>Status</span><b>' + (v.tracking_since ? "Recording" : "Installed · no visits yet") + '</b></div><div><span>Tracking since</span><b>' + esc(v.tracking_since ? fmtDate(v.tracking_since, true) : "—") + '</b></div><div><span>Page views stored</span><b>' + num(v.pageviews_total) + '</b></div></div><p class="note">Anonymous: page path, referring site and a random session id only. No IPs, cookies or personal data. Do Not Track is respected.</p>') +
       "</div>";
   }
@@ -299,8 +299,8 @@ function cumulativeCard(d) {
   var s = { cur: cum.slice(-n), prev: cum.slice(-2 * n, -n), labels: daily.slice(-n).map(function (x) { return dayLabel(x.day); }), n: n, curLabel: n === 7 ? "Last 7 days" : "Last 30 days", prevLabel: "Previous " + n + " days" };
   s.prevSame = s.prev.length ? s.prev[s.prev.length - 1] : 0;
   var last = s.cur.length ? s.cur[s.cur.length - 1] : 0;
-  return '<div class="card"><div class="chart-top"><div><h2>Total customers over time</h2><div class="chart-total"><b>' + num(last) + '</b><span class="muted" style="font-size:12px">' + (state.range === "today" ? "daily · last 7 days" : "cumulative") + "</span></div></div>" +
-    '<div class="legend"><span><i></i>' + esc(s.curLabel) + '</span><span><i class="prev"></i>' + esc(s.prevLabel) + "</span></div></div>" + lineChart(s, { h: 170, label: "Total customers", emptyText: "No customers yet" }) + "</div>";
+  return '<div class="card"><div class="chart-top"><div><h2>Total accounts over time</h2><div class="chart-total"><b>' + num(last) + '</b><span class="muted" style="font-size:12px">' + (state.range === "today" ? "daily · last 7 days" : "cumulative") + "</span></div></div>" +
+    '<div class="legend"><span><i></i>' + esc(s.curLabel) + '</span><span><i class="prev"></i>' + esc(s.prevLabel) + "</span></div></div>" + lineChart(s, { h: 170, label: "Total accounts", emptyText: "No accounts yet" }) + "</div>";
 }
 
 /* ---------- render ---------- */
@@ -374,7 +374,7 @@ $("btn-refresh").addEventListener("click", function () { load(); });
 
 /* ---------- leads = new accounts + form leads; alert sounds ---------- */
 function addLeadTotals(d) {
-  (d.daily || []).concat(d.hourly || []).forEach(function (x) { x.lead_total = (Number(x.signups) || 0) + (Number(x.leads) || 0); });
+  (d.daily || []).concat(d.hourly || []).forEach(function (x) { x.lead_total = (Number(x.signups) || 0) + (Number(x.waitlist) || 0); });
 }
 var SND = { lead: "assets/sounds/new-subscription.mp3", subscribe: "assets/sounds/renewal-crypto.mp3" };
 var sndMuted = false, sndUnlocked = false, sndPending = null, prevCounts = null;
@@ -408,10 +408,10 @@ function syncSndBtn() {
   });
   syncSndBtn();
 })();
-/* Between refreshes: a new MarketScope account or form lead plays the lead chime;
-   a new paid subscription (Stripe fulfillment) plays the coin sound. */
+/* Between refreshes: a new Glimify account or waitlist join plays the lead chime;
+   a new subscription added in the app plays the coin sound. */
 function alertNew(d) {
-  var c = { lead: (Number((d.users || {}).total) || 0) + (Number((d.leads || {}).total) || 0), subscribe: Number((d.billing || {}).fulfillments) || 0 };
+  var c = { lead: (Number((d.users || {}).total) || 0) + (Number((d.waitlist || {}).total) || 0), subscribe: Number((d.platform || {}).subscriptions) || 0 };
   if (prevCounts) {
     if (c.subscribe > prevCounts.subscribe) playSnd("subscribe");
     else if (c.lead > prevCounts.lead) playSnd("lead");
